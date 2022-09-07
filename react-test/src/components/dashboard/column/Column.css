@@ -1,0 +1,7 @@
+.column-container {
+    margin: 1em;
+    width: 340px;
+    background-color: var(--Sunset-orange);
+    text-align: center;
+    color: white;
+}
