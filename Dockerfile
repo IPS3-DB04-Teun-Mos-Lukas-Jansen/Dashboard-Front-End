@@ -33,10 +33,10 @@ ENV PATH /app/node_modules/.bin:$PATHs
 
 
 # install app dependencies
-COPY Front-End/package.json ./
-COPY Front-End/package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+RUN npm install react-scripts@3.4.1 -g
 
 # add app
 COPY . ./
