@@ -11,7 +11,7 @@ root.render(
     <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
-        <Route path='*' element={<img src="https://http.cat/404"></img>}/>
+        <Route path='*' element={<img src="https://http.cat/404" alt='404 page not found'></img>}/>
       </Route>
     </Routes>
   </BrowserRouter>
