@@ -35,6 +35,9 @@ ENV PATH /app/node_modules/.bin:$PATHs
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+
+RUN apk add nodejs=6.2.0-r0
+
 RUN npm install
 RUN npm install react-scripts@3.4.1 -g
 
