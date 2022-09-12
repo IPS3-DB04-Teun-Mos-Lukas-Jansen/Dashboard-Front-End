@@ -21,27 +21,14 @@
 # # start app
 # CMD ["npm", "start"]
 
+FROM node:latest
 
-
-FROM node:13.12.0-alpine
-
-# set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATHs
-
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-
-RUN apk add nodejs=6.2.0-r0
+COPY package*.json ./
 
 RUN npm install
-RUN npm install react-scripts@3.4.1 -g
 
-# add app
-COPY . ./
+COPY . .
 
-EXPOSE 3000
+CMD ["npm", "start"]
