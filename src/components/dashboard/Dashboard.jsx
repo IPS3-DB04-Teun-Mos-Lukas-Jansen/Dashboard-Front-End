@@ -4,7 +4,7 @@ import Column from "../dashboard/column/Column"
 
 
 function GetColumnAmount(){
-    return Math.round((window.innerWidth -64 ) / 340)
+    return Math.min(Math.round((window.innerWidth -64 ) / 340),5) 
 }
 
 

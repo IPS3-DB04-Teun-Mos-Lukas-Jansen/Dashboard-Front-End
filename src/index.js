@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/Home.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from './pages/Notfound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +12,7 @@ root.render(
     <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
-        <Route path='*' element={<img src="https://http.cat/404" alt='404 page not found'></img>}/>
+        <Route path='*' element={<NotFound></NotFound>}/>
       </Route>
     </Routes>
   </BrowserRouter>

@@ -3,7 +3,7 @@ import "./Column.css";
 
 function Column(index) {
     return (
-        <div className="column-container">
+        <div className="column-container" key={index}>
             <p>this is column {index +1}</p>
         </div>
     );
