@@ -1,6 +1,6 @@
 .column-container {
     margin: 1em;
-    width: 340px;
+    width: 100%;
     background-color: var(--Sunset-orange);
     text-align: center;
     color: white;
