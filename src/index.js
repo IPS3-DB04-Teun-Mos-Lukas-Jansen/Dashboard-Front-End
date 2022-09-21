@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/Home.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from './pages/Notfound';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
