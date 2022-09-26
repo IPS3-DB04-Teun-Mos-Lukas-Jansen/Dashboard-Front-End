@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import GetTokens from "../../services/GoogleServices";
-import { useSearchParams } from "react-router-dom";
+import RequestTokens from "../../services/GoogleServices";
+import { useSearchParams} from "react-router-dom";
+import { useNavigate  } from 'react-router-dom';
 
 function AuthLoadingPage() {
+    const navigate = useNavigate()
 
     let [searchParams, setSearchParams] = useSearchParams();
     useEffect(() => {
@@ -11,7 +13,10 @@ function AuthLoadingPage() {
     });
 
     async function handlelogin() {
-        await GetTokens(searchParams.get('code'));
+        const data = await RequestTokens(searchParams.get('code'));
+        localStorage.setItem("tokens", JSON.stringify(data));
+        
+        navigate('/')
     }
 
     return (
