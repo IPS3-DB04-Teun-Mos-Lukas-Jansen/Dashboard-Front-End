@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import "./Home.css";
 import jwt_decode from "jwt-decode"
 
-const CLIENT_ID = "755577925419-0d8prudc123fjeps09i7s1589cd8hdti.apps.googleusercontent.com";
-// const SCOPES = "https://www.googleapis.com/auth/userinfo.profile";
+const CLIENT_ID = "";
+const CLIENT_SECRET = "";
+
 
 function Home() {
 
   const [ user, setUser ] = useState({});
-  // const [ tokenClient, setTokenClient] = useState({});
+  const [ tokenClient, setTokenClient] = useState({});
 
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID token " + response.credential);
@@ -38,26 +39,21 @@ function Home() {
       { theme: "outline", size: "large"}
     );
 
-    // // tokenClient
-    // setTokenClient(google.accounts.oauth2.initTokenClient({
-    //   client_id: CLIENT_ID,
-    //   scopes: SCOPES,
-    //   callback: (tokenResponse) => {
-    //     console.log(tokenResponse);
-    //   }
-    //  })
-    // );
-    // // tokenClient.requestAccessToken();
-
+    setTokenClient(google.accounts.oauth2.initCodeClient({
+      client_id: CLIENT_ID,
+      scope: 'https://www.googleapis.com/auth/calendar.readonly',
+      ux_mode: 'redirect',
+      redirect_uri: "http://localhost:3000",
+      state: "YOUR_BINDING_VALUE"
+    }));
+    
     google.accounts.id.prompt();
   }, []);
 
   return (
     <div className="App">
-      <div id="signInDiv"></div>
-      { Object.keys(user).length != 0 &&
-        <button onClick={ (e) => handleSignOut(e)}>Sign Out</button>
-      }
+
+      <button onClick={ (e) => tokenClient.requestCode()}>sign in</button>
       
       { user &&
       <div>
@@ -65,6 +61,7 @@ function Home() {
         <h3>{user.name}</h3>
       </div>
       }
+
     </div>
   );
 }
