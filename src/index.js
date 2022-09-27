@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/Home.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from './pages/Notfound';
+import AuthLoadingPage from './pages/auth/AuthLoading';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +14,8 @@ root.render(
     <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
-        <Route path='*' element={<NotFound></NotFound>}/>
+        <Route path='*' element={<NotFound/>}/>
+        <Route path='/auth' element={<AuthLoadingPage/>}/>
       </Route>
     </Routes>
   </BrowserRouter>
