@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import RequestTokens from "../../services/GoogleServices";
+import RequestTokens from "../../services/GoogleAuthServices";
 import { useSearchParams} from "react-router-dom";
 import { useNavigate  } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ function AuthLoadingPage() {
 
     return (
         <div className="cover">
-            <img src="https://c.tenor.com/DHkIdy0a-UkAAAAM/loading-cat.gif" alt="loading picture"></img>
+            <img src="https://c.tenor.com/DHkIdy0a-UkAAAAM/loading-cat.gif" alt="loading..."></img>
         </div>
     );
 }

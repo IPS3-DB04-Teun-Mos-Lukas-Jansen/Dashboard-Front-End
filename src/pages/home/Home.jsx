@@ -1,22 +1,47 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./Home.css";
-import jwt_decode from "jwt-decode"
-import GoogleLogin from "../../components/LoginComponents/GoogleLoginComponent/GoogleLogin";
-import {GetAccessToken} from "../../services/GoogleServices"
+import {GoogleLogin, GoogleLogout} from "../../components/LoginComponents/GoogleLoginComponent/GoogleLogin";
+import {GetLoggedinUser} from "../../services/GoogleProfileService"
 
 
 
 function Home() {
+
+  const [User, SetUser] = useState({});
+
+
   useEffect(() => {
-    GetAccessToken();
-  });
+    init();
+  }, []);
+
+  function Logout() {
+    localStorage.removeItem("tokens");
+    SetUser(null);
+  }
+
+  async function init() {
+    const user = await GetLoggedinUser();
+    SetUser(user);
+  }
   
 
   return (
     <div className="App">
-      <GoogleLogin></GoogleLogin>
 
+      { !User &&
+        <GoogleLogin></GoogleLogin>
+      }
+
+      { User &&
+        <div>
+          <div>
+            <button onClick={Logout}>Logout</button>
+          </div>
+          <img src={User.picture}></img>
+          <div>{User.name} </div>
+        </div>
+      }
     </div>
   );
 }
