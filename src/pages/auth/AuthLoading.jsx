@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import RequestTokens from "../../services/GoogleAuthServices";
+import RequestTokens from "../../services/Google_Services/GoogleAuthServices";
 import { useSearchParams} from "react-router-dom";
 import { useNavigate  } from 'react-router-dom';
 
