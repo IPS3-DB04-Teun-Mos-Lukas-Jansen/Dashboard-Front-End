@@ -1,0 +1,28 @@
+.header {
+    box-shadow: var(--epic-shadow);
+    height: 3.4em;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-picture {
+    height: 100%;
+    object-fit: contain;
+    border-radius: 100%;
+    
+}
+
+
+.spacer {
+    flex-grow: 1;
+}
+
+.profile-info {
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+}

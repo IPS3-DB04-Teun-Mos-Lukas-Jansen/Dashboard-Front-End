@@ -1,16 +1,20 @@
-import React from "react";
+import React, { Children } from "react";
 import { useEffect, useState, useContext } from "react";
 import "./Home.css";
 import { GetUrls, AddUrl, RemoveUrl, UpdateUrl } from "../../services/UserPreferences_Services/UrlServices"
-import { GoogleLogin, GoogleLogout } from "../../components/LoginComponents/GoogleLoginComponent/GoogleLogin";
+
 
 import { UserContext } from "../../app"
+import CardContainer from "../../components/CardContainer/CardContainer";
+import UrlCard from "../../components/Cards/UrlCard/UrlCard";
 
 function Home() {
 
   const User = useContext(UserContext).User;
 
   const [UrlList, SetUrls] = useState([]);
+
+  const [EditMode, SetEditMode] = useState(false);
 
   useEffect(() => {
 
@@ -26,36 +30,32 @@ function Home() {
     SetUrls(urls);
   }
 
+  function ToggleEditMode() {
+    SetEditMode(!EditMode);
+  }
+
   return (
     <div className="App">
 
-      {!User &&
-        <GoogleLogin></GoogleLogin>
-      }
+      
 
       {User &&
         <div>
-          <div>
-            {/* <button onClick={Logout}>Logout</button> */}
-          </div>
-          <img src={User.picture}></img>
-          <div>{User.name} </div>
-          <div>
-            <button onClick={() => { AddUrl(User.id, "https://kanikeenkortebroekaan.nl😎"); initUrls(User); }}>add url</button>
-            <button onClick={() => { RemoveUrl(User.id, "hmmm😎") }}>remove url</button>
-            <button onClick={() => { UpdateUrl(User.id, "255d6455-3846-4ad3-a6de-705f7c7974c0", "bruh😎😎😎😎") }}>update url</button>
-          </div>
-          <div>
+          <div className="cards">
             {UrlList.map((url, index) => {
               return (
-                <div key={index}>
-                  <a href={url.Url}>{url.Url}</a>
-                </div>
+                <CardContainer user = {User} object={url} updateList={initUrls} isEditMode={EditMode} key={index}>
+                  <UrlCard urlLink={url.Url}></UrlCard>
+                  
+                </CardContainer>
               )
             })}
           </div>
         </div>
       }
+
+
+      <button onClick={ToggleEditMode}>EDIT</button>
     </div>
   );
 }

@@ -1,0 +1,18 @@
+.card {
+    padding: 5px;
+    height: max-content;
+}
+
+.url-card{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: -webkit-fill-available;
+}
+
+.image-card {
+    width: 100%;
+    object-fit: scale-down;
+    
+}
+

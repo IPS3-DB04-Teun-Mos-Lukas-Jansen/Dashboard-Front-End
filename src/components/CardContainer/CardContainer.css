@@ -1,0 +1,43 @@
+.card-container {
+    width: 80px;
+    background-color: lightgrey;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: var(--epic-shadow);
+    position: relative;
+}
+
+.mode-buttons {
+    border-radius: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: gray;
+    aspect-ratio: 1;
+    padding: 2px;
+    display: flex;
+    box-shadow: var(--epic-shadow);
+}
+
+.mode-images {
+    width: 30px;
+    cursor: pointer;
+}
+
+
+.mode-buttons:hover {
+    border-radius: 100%;
+    background-color: darkgray;
+}
+
+.edit-button {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+}
+
+.delete-button {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}

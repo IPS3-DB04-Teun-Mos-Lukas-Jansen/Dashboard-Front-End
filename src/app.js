@@ -27,6 +27,8 @@ export default function App() {
         console.log(user);
     }
 
+    
+
 
     function Logout() {
         localStorage.removeItem("tokens");

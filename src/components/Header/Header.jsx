@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../app"
+import { GoogleLogin } from "../../components/LoginComponents/GoogleLoginComponent/GoogleLogin";
+import "./Header.css"
 
 export default function Header() {
 
@@ -11,17 +13,26 @@ export default function Header() {
 
     useEffect(() => {
         if (User != null) {
-            
+
         };
     }, [User]);
 
+
     return (
         <div className="header">
-            { User &&
+
+            
+            <div className="spacer"></div>
+
+            {!User &&
+                <GoogleLogin></GoogleLogin>
+            }
+
+            {User &&
                 <div className="profile-info">
                     <label>{User.name}</label>
-                    <img src={User.picture} alt="profile picture"></img>
                     <button onClick={Logout}>log out</button>
+                    <img className="profile-picture" src={User.picture} alt="profile picture"></img>
 
                 </div>
             }
