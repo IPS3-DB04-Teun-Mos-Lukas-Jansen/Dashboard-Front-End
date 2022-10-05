@@ -7,6 +7,7 @@ import { GetUrls, AddUrl, RemoveUrl, UpdateUrl } from "../../services/UserPrefer
 import { UserContext } from "../../app"
 import CardContainer from "../../components/CardContainer/CardContainer";
 import UrlCard from "../../components/Cards/UrlCard/UrlCard";
+import DashBoard from "../../components/dashboard/Dashboard";
 
 function Home() {
 
@@ -15,6 +16,8 @@ function Home() {
   const [UrlList, SetUrls] = useState([]);
 
   const [EditMode, SetEditMode] = useState(false);
+
+  const [InputText, SetInputText] = useState("");
 
   useEffect(() => {
 
@@ -34,6 +37,10 @@ function Home() {
     SetEditMode(!EditMode);
   }
 
+  function InputChanged(event) {
+    SetInputText(event.target.value);
+  }
+
   return (
     <div className="App">
 
@@ -51,11 +58,19 @@ function Home() {
               )
             })}
           </div>
+          { EditMode &&
+            <div>
+              <input onChange={InputChanged} type="text"></input>
+              <button onClick={() => {AddUrl(User.id,InputText); initUrls();}}>Add</button>
+            </div>
+          }
+          
+          
+          <button onClick={ToggleEditMode}>EDIT</button>
         </div>
       }
 
-
-      <button onClick={ToggleEditMode}>EDIT</button>
+      {/* <DashBoard></DashBoard> */}
     </div>
   );
 }

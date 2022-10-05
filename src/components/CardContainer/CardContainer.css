@@ -1,10 +1,18 @@
 .card-container {
     width: 80px;
-    background-color: lightgrey;
+    background-color: var(--card-color);
     margin: 5px;
-    border-radius: 10px;
+    border-radius: var(--roundness);
     box-shadow: var(--epic-shadow);
     position: relative;
+    border: var(--card-border);
+}
+
+dialog {
+    z-index: 999;
+    box-shadow: var(--epic-shadow);
+    border: none;
+    background-color: lightgrey;
 }
 
 .mode-buttons {
@@ -26,9 +34,9 @@
 
 
 .mode-buttons:hover {
-    border-radius: 100%;
     background-color: darkgray;
 }
+
 
 .edit-button {
     position: absolute;
@@ -40,4 +48,8 @@
     position: absolute;
     top: -6px;
     right: -6px;
+}
+
+.delete-button:hover {
+    background-color:red;
 }
