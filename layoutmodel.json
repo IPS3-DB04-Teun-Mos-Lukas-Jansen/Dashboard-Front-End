@@ -1,0 +1,39 @@
+[
+{
+    "userid": "1234",
+    "layout":
+    [
+        {
+            "collumnIndex": 1,
+            "cards":
+            [
+                {
+                    "rowIndex": 1,
+                    "cardId":"id van een mandje/card",
+                    "cardType":"url"
+                },
+                {
+                    "rowIndex": 2,
+                    "cardId": "1234",
+                    "cardType":"spotify"
+                }
+            ]
+        }
+    ]
+    
+    
+},
+
+
+{
+    "cardId":"id van een mandje/card",
+    "urls": 
+    [
+        {
+            "urlIndex": 1,
+            "urlId": "id",
+            "url":"url"
+        }
+    ]
+}
+]

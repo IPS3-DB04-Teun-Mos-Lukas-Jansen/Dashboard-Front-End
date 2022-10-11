@@ -1,10 +1,14 @@
 import React, { Children } from "react";
 import { useEffect, useState, useContext } from "react";
 import "./Home.css";
-import { GetUrls, AddUrl, RemoveUrl, UpdateUrl } from "../../services/UserPreferences_Services/UrlServices"
+import { GetLayout, AddCardToLayout, RemoveCardFromLayout, RemoveColumnFromLayout} from "../../services/UserPreferences_Services/LayoutServices"
+import { GetUrlCard, RemoveUrlCard, AddUrlCard, AddUrlToCard, UpdateUrlInCard, RemoveUrlFromCard } from "../../services/UserPreferences_Services/UrlCardServices"
 
 
 import { UserContext } from "../../app"
+import { useSearchParams} from "react-router-dom";
+
+
 import CardContainer from "../../components/CardContainer/CardContainer";
 import UrlCard from "../../components/Cards/UrlCard/UrlCard";
 import DashBoard from "../../components/dashboard/Dashboard";
@@ -13,64 +17,49 @@ function Home() {
 
   const User = useContext(UserContext).User;
 
+  const EditMode = useContext(UserContext).EditMode;
+
+  const [Layout, SetLayout] = useState();
+
   const [UrlList, SetUrls] = useState([]);
-
-  const [EditMode, SetEditMode] = useState(false);
-
-  const [InputText, SetInputText] = useState("");
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
 
     if (User != null) {
-      initUrls();
+      init();
     }
 
   }, [User]);
 
 
-  async function initUrls() {
-    const urls = await GetUrls(User.id);
-    SetUrls(urls);
+  async function init() {
+    SetLayout(await GetLayout(User.id));
   }
 
-  function ToggleEditMode() {
-    SetEditMode(!EditMode);
-  }
 
-  function InputChanged(event) {
-    SetInputText(event.target.value);
-  }
+
 
   return (
     <div className="App">
-
-      
-
       {User &&
-        <div>
-          <div className="cards">
-            {UrlList.map((url, index) => {
-              return (
-                <CardContainer user = {User} object={url} updateList={initUrls} isEditMode={EditMode} key={index}>
-                  <UrlCard urlLink={url.Url}></UrlCard>
-                  
-                </CardContainer>
-              )
-            })}
-          </div>
-          { EditMode &&
+        <h1>
+
+          {Layout &&
             <div>
-              <input onChange={InputChanged} type="text"></input>
-              <button onClick={() => {AddUrl(User.id,InputText); initUrls();}}>Add</button>
+              
             </div>
           }
-          
-          
-          <button onClick={ToggleEditMode}>EDIT</button>
-        </div>
+          {User.name}
+        </h1>
+      }
+      { !User &&
+        <h1>NIET INGELOGD SUKKEL!!!</h1>
       }
 
+
       {/* <DashBoard></DashBoard> */}
+
     </div>
   );
 }

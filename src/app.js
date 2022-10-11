@@ -4,7 +4,7 @@ import Home from './pages/home/Home.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from './pages/Notfound';
 import AuthLoadingPage from './pages/auth/AuthLoading';
-import { GoogleLogin, GoogleLogout } from "./components/LoginComponents/GoogleLoginComponent/GoogleLogin";
+import { GoogleLogin, GoogleLogout } from "./components/LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import { GetLoggedinUser } from "./services/Google_Services/GoogleProfileService"
 import Header from "./components/Header/Header.jsx";
 
@@ -14,6 +14,7 @@ export const UserContext = React.createContext(null);
 export default function App() {
 
     const [User, SetUser] = useState(null);
+    const [EditMode, SetEditMode] = useState(false);
 
     useEffect(() => {
         init();
@@ -24,7 +25,7 @@ export default function App() {
         const user = await GetLoggedinUser();
         SetUser(user);
 
-        console.log(user);
+        // console.log(user);
     }
 
     
@@ -37,7 +38,7 @@ export default function App() {
 
     return (
         <div className="app">
-            <UserContext.Provider value={{ User, Logout, SetUser }}>
+            <UserContext.Provider value={{ User, Logout, SetUser, EditMode, SetEditMode }}>
                 <Header />
 
                 <BrowserRouter>

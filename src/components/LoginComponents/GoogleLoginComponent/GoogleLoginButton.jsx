@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 
 
 
-export function GoogleLogin() {
+export function GoogleLoginButton() {
   const [tokenClient, setTokenClient] = useState({});
 
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
   useEffect(() => {
-    /* global google */
     const google = window.google;
     
     setTokenClient(google.accounts.oauth2.initCodeClient({
@@ -31,7 +30,7 @@ export function GoogleLogin() {
   return(
     <div>
       <button onClick={requestcode}>
-        login
+        Login
       </button>
     </div>
   )
