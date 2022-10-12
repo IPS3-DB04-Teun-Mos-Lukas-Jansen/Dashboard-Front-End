@@ -22,7 +22,6 @@ export default function Header() {
 
     function toggleEditMode(){
         SetEditMode(!EditMode);
-        console.log(EditMode);
     }
 
     return (

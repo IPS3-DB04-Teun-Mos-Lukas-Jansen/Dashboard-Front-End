@@ -11,6 +11,8 @@ export default function CardContainer(props) {
             switch (card.cardType) {
                 case "Url":
                     return UrlCard(card.cardId);
+                case "Url-dummy":
+                    return UrlCard("dummy",true);
                 case "kaas":
                     return UrlCard(card.cardId);
                 case 'ggg':

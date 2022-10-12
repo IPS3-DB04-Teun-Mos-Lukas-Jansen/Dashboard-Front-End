@@ -1,12 +1,14 @@
-import React, { Children } from "react";
+import React from "react";
 import { useEffect, useState, useContext } from "react";
 import "./Home.css";
+
 import {
   GetLayout,
   AddCardToLayout,
   RemoveCardFromLayout,
   RemoveColumnFromLayout,
 } from "../../services/UserPreferences_Services/LayoutServices";
+
 import {
   GetUrlCard,
   RemoveUrlCard,
@@ -15,6 +17,7 @@ import {
   UpdateUrlInCard,
   RemoveUrlFromCard,
 } from "../../services/UserPreferences_Services/UrlCardServices";
+
 
 import { UserContext, ApplicationContext } from "../../app";
 import { useSearchParams } from "react-router-dom";

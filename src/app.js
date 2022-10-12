@@ -4,10 +4,6 @@ import Home from "./pages/home/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/Notfound";
 import AuthLoadingPage from "./pages/auth/AuthLoading";
-import {
-  GoogleLogin,
-  GoogleLogout,
-} from "./components/LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import { GetLoggedinUser } from "./services/Google_Services/GoogleProfileService";
 import Header from "./components/Header/Header.jsx";
 
@@ -25,8 +21,6 @@ export default function App() {
   async function init() {
     const user = await GetLoggedinUser();
     SetUser(user);
-
-    // console.log(user);
   }
 
   function Logout() {

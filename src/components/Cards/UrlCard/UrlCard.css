@@ -19,7 +19,7 @@
     aspect-ratio: 1;
 }
 
-.single-url-card {
+.single-url-card, .add-url-card {
     margin: 10px;
     padding: 10px;
     aspect-ratio: 1;
@@ -29,14 +29,27 @@
     background-color: var(--card-color-2);
     border-radius: var(--roundness);
     box-shadow: var(--epic-shadow);
+    cursor: pointer;
 }
 
-.single-url-card:hover {
+.single-url-card:hover ,.add-url-card:hover {
     background-color: var(--card-color-2-hover);
     box-shadow: var(--epic-shadow), 0px 0px 10px 0px var(--card-color-2-hover);
 }
 
+
+.add-url-card {
+    filter: opacity(50%);
+}
+
+
+
 .image-card {
     width: 100%;
     object-fit: scale-down;
+    border-radius: var(--roundness);
+}
+
+.add-url-image-card {
+    width: 100%;
 }
