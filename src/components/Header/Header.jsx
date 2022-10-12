@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../../app"
+import { UserContext, ApplicationContext } from "../../app"
 import { GoogleLoginButton } from "../LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import "./Header.css"
 
@@ -11,8 +11,8 @@ export default function Header() {
     const User = useContext(UserContext).User;
     const Logout = useContext(UserContext).Logout;
     
-    const SetEditMode = useContext(UserContext).SetEditMode;
-    const EditMode = useContext(UserContext).EditMode;
+    const SetEditMode = useContext(ApplicationContext).SetEditMode;
+    const EditMode = useContext(ApplicationContext).EditMode;
 
     useEffect(() => {
         if (User != null) {

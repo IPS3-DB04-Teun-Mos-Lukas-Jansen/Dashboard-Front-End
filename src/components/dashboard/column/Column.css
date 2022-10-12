@@ -1,7 +1,8 @@
 .column-container {
-    margin: 1em;
+    margin: .5em;
     width: 100%;
     text-align: center;
     color: white;
-    border: 2px solid var(--sunset-orange);
+    background-color: var(--column-color);
+    border-radius: var(--roundness);
 }

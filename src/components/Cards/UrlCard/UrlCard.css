@@ -1,0 +1,42 @@
+
+
+.card {
+    padding: var(--url-card-image-padding);
+    height: max-content;
+}
+
+.url-card{
+ display: flex;
+ justify-content: flex-start;
+ align-items: flex-start;
+ width: 100%;
+ /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/3)), 1fr)); */
+ flex-wrap: wrap;
+}
+
+.single-url {
+    width: calc(100%/4);
+    aspect-ratio: 1;
+}
+
+.single-url-card {
+    margin: 10px;
+    padding: 10px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-color-2);
+    border-radius: var(--roundness);
+    box-shadow: var(--epic-shadow);
+}
+
+.single-url-card:hover {
+    background-color: var(--card-color-2-hover);
+    box-shadow: var(--epic-shadow), 0px 0px 10px 0px var(--card-color-2-hover);
+}
+
+.image-card {
+    width: 100%;
+    object-fit: scale-down;
+}
