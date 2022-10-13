@@ -25,7 +25,14 @@ function GetColumnlist(props){
 
     const _Columns = [];
     for (let index = 1; index < Columns + 1; index++) {
-        const column = props.Layout.columns[index];
+
+
+        let column = null;
+
+        if(props.Layout != null) {
+            column = props.Layout.columns[index]
+        }
+
         var cards = null;
 
         const editMode = props.EditMode;
@@ -75,9 +82,7 @@ function DashBoard() {
     return (
         <div className="dashboard-container">
             <div className="columns-container">
-                { Layout &&
                     <GetColumnlist ShowAddCardPopup={ShowAddCardPopup} EditMode={EditMode} Layout={Layout}></GetColumnlist>
-                }
             </div>
 
             { IsAddCardPopupShown &&
