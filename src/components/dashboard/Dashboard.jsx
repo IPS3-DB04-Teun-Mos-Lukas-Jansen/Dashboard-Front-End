@@ -5,23 +5,23 @@ import { UserContext, ApplicationContext } from "../../app";
 import { useEffect } from "react";
 import { GetLayout } from "../../services/UserPreferences_Services/LayoutServices"
 import AddCardPopup from "./AddCardPopup/AddCardPopup";
+import UrlCard from "../Cards/UrlCard/UrlCard";
 
-function GetColumnAmount(){
-    return Math.min(Math.round((window.innerWidth -64 ) / 340),5) 
+function GetColumnAmount() {
+    return Math.min(Math.round((window.innerWidth - 64) / 340), 5)
 }
 
 
-function GetColumnlist(props){
+function GetColumnlist(props) {
 
     const [Columns, setColumns] = useState(GetColumnAmount);
 
-    function handleResize() 
-    {
+    function handleResize() {
         setColumns(GetColumnAmount);
     }
     window.addEventListener('resize', handleResize)
-    
-    
+
+
 
     const _Columns = [];
     for (let index = 1; index < Columns + 1; index++) {
@@ -29,7 +29,7 @@ function GetColumnlist(props){
 
         let column = null;
 
-        if(props.Layout != null) {
+        if (props.Layout != null) {
             column = props.Layout.columns[index]
         }
 
@@ -37,16 +37,18 @@ function GetColumnlist(props){
 
         const editMode = props.EditMode;
         const ShowAddCardPopup = props.ShowAddCardPopup;
-        
+
         if (column != null) {
             cards = column.cards;
         }
 
-        
+
         _Columns.push(Column(index, cards, editMode, ShowAddCardPopup));
     }
     return (_Columns);
 }
+
+export const InitContext = React.createContext(null);
 
 function DashBoard() {
 
@@ -59,11 +61,11 @@ function DashBoard() {
     const [SelectedColumn, SetSelectedColumn] = useState(0);
 
 
-    useEffect(() =>{
-        if (User != null){
+    useEffect(() => {
+        if (User != null) {
             init();
         }
-    },[User])
+    }, [User])
 
     async function init() {
         SetLayout(await GetLayout(User.id));
@@ -81,13 +83,17 @@ function DashBoard() {
 
     return (
         <div className="dashboard-container">
-            <div className="columns-container">
-                    <GetColumnlist ShowAddCardPopup={ShowAddCardPopup} EditMode={EditMode} Layout={Layout}></GetColumnlist>
-            </div>
+                
+                <InitContext.Provider value={init}>
+                    <div className="columns-container">
+                        <GetColumnlist ShowAddCardPopup={ShowAddCardPopup} EditMode={EditMode} Layout={Layout}></GetColumnlist>
+                    </div>
 
-            { IsAddCardPopupShown &&
-                <AddCardPopup ClosePopup={ClosePopup} SelectedColumn={SelectedColumn}></AddCardPopup>
-            }
+                    {IsAddCardPopupShown &&
+                        <AddCardPopup ClosePopup={ClosePopup} SelectedColumn={SelectedColumn}></AddCardPopup>
+                    }
+                </InitContext.Provider>
+
         </div>
     );
 

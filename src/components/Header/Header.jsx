@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { UserContext, ApplicationContext } from "../../app"
 import { GoogleLoginButton } from "../LoginComponents/GoogleLoginComponent/GoogleLoginButton";
-import "./Header.css"
+import "./Header.css";
+import LogoutImg from "../../images/logout.svg";
 
 export default function Header() {
 
@@ -40,9 +41,17 @@ export default function Header() {
             {User &&
                 <div className="profile-info">
 
-                    <button onClick={toggleEditMode}>aaa</button>
-                    <a onClick={Logout}>log out</a>
-                    <img className="profile-picture" src={User.picture} alt="profile picture"></img>
+                    <div className="icon-btn" onClick={toggleEditMode}>
+                        <div className={`switch ${!EditMode ? "edit-mask" : "edit-mask edit-mask-active"}`}>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div className="icon-btn" onClick={Logout}>
+                        <img src={LogoutImg}></img>
+                    </div>
+                    
+                    <img className="profile-picture" src={User.picture} referrerPolicy="no-referrer" alt="profile picture"></img>
 
                 </div>
             }

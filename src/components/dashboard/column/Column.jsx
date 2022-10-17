@@ -28,8 +28,8 @@ function Column(index, cards, EditMode, ShowAddCardPopup) {
       <h2>this is column {index}</h2>
       {cards && (
         <div>
-          {cards.map((content, index) => {
-            return <CardContainer card={content} key={index}></CardContainer>;
+          {cards.map((content, _index) => {
+            return <CardContainer Column={index} card={content} key={_index}></CardContainer>;
           })}
         </div>
       )}
