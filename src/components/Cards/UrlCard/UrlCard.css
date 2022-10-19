@@ -121,3 +121,77 @@
 .more-btn-active:hover {
     background-color: #ffffff5a;
 }
+
+
+
+
+.edit-url-button-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.edit-url-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 2px;
+}
+
+.edit-url-button:hover {
+    background-color: #ffffff2a;
+}
+
+.edit-url-button:active {
+    background-color: #ffffff5a;
+}
+
+.delete-popup {
+    background-color: var(--card-color-2);
+    border-radius: var(--roundness);
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-popup-btns {
+    margin-top: 15px;
+}
+
+.delete-edit-popup-btns {
+    margin-top: 5px;
+}
+
+.delete-edit-popup-btns button {
+    margin: 5px;
+}
+
+.edit-url-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-h3 {
+    margin-top: 0;
+    color: var(--card-text-color);
+}
+
+.add-url-popup-btn {
+    margin-left: 8px;
+}
+
+.empty-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    align-items: center;    
+}
+
+.empty-container h3{
+    /* font-size: 100%; */
+    position: absolute;
+}

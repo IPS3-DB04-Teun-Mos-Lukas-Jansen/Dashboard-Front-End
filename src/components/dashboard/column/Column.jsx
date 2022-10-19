@@ -25,7 +25,7 @@ function Column(index, cards, EditMode, ShowAddCardPopup) {
 
   return (
     <div className="column-container" key={index}>
-      <h2>this is column {index}</h2>
+      {/* <h2>this is column {index}</h2> */}
       {cards && (
         <div>
           {cards.map((content, _index) => {
