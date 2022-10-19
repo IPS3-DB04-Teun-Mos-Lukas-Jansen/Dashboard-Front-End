@@ -1,0 +1,197 @@
+
+
+.card {
+    padding: var(--url-card-image-padding);
+    height: max-content;
+}
+
+.url-card{
+ display: flex;
+ justify-content: flex-start;
+ align-items: flex-start;
+ width: 100%;
+ /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/3)), 1fr)); */
+ flex-wrap: wrap;
+}
+
+.single-url {
+    width: calc(100%/4);
+    aspect-ratio: 1;
+}
+
+.single-url-card, .add-url-card {
+    margin: 10px;
+    padding: 10px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-color-2);
+    border-radius: var(--roundness);
+    box-shadow: var(--epic-shadow);
+    cursor: pointer;
+}
+
+.single-url-card:hover ,.add-url-card:hover {
+    background-color: var(--card-color-2-hover);
+    box-shadow: var(--epic-shadow), 0px 0px 10px 0px var(--card-color-2-hover);
+}
+
+
+.add-url-card {
+    filter: opacity(50%);
+}
+
+
+
+.image-card {
+    width: 100%;
+    object-fit: scale-down;
+    border-radius: var(--roundness);
+}
+
+.add-url-image-card {
+    width: 100%;
+}
+
+.card-delete-btn {
+    position: relative;
+}
+
+.card-edit-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    width: 8%;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.more-btn:hover {
+    background-color: #ffffff2a;
+}
+
+.more-btn:active {
+    background-color: #ffffff5a;
+}
+
+.more-btn img {
+    width: 100%;
+    filter: brightness(80%);
+}
+
+.more-btn {
+    width: 100%;
+    height: auto;
+    border-radius: 100%;
+    display: flex;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.more-buttons {
+    width: 100%;
+    transition-duration: 100ms;
+}
+
+.card-delete-btn {
+    border-radius: 0 0 var(--roundness) var(--roundness) ;
+    background-color: #ffffff2a;
+    /* box-shadow: var(--less-epic-shadow) ; */
+    transition-duration: 100ms;
+    cursor: pointer;
+}
+
+.card-delete-btn:hover {
+    background-color: red;
+}
+
+.hidden {
+    display: none;
+    transition-duration: 300ms;
+}
+
+.more-btn-active {
+    background-color: #ffffff2a;
+    border-radius: var(--roundness) var(--roundness) 0 0;
+}
+
+
+.more-btn-active:hover {
+    background-color: #ffffff5a;
+}
+
+
+
+
+.edit-url-button-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.edit-url-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 2px;
+}
+
+.edit-url-button:hover {
+    background-color: #ffffff2a;
+}
+
+.edit-url-button:active {
+    background-color: #ffffff5a;
+}
+
+.delete-popup {
+    background-color: var(--card-color-2);
+    border-radius: var(--roundness);
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-popup-btns {
+    margin-top: 15px;
+}
+
+.delete-edit-popup-btns {
+    margin-top: 5px;
+}
+
+.delete-edit-popup-btns button {
+    margin: 5px;
+}
+
+.edit-url-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-h3 {
+    margin-top: 0;
+    color: var(--card-text-color);
+}
+
+.add-url-popup-btn {
+    margin-left: 8px;
+}
+
+.empty-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    align-items: center;    
+}
+
+.empty-container h3{
+    /* font-size: 100%; */
+    position: absolute;
+}

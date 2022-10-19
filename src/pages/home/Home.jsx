@@ -1,47 +1,59 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Home.css";
-import {GoogleLogin, GoogleLogout} from "../../components/LoginComponents/GoogleLoginComponent/GoogleLogin";
-import {GetLoggedinUser} from "../../services/GoogleProfileService"
+
+import {
+  GetLayout,
+  AddCardToLayout,
+  RemoveCardFromLayout,
+  RemoveColumnFromLayout,
+} from "../../services/UserPreferences_Services/LayoutServices";
+
+import {
+  GetUrlCard,
+  RemoveUrlCard,
+  AddUrlCard,
+  AddUrlToCard,
+  UpdateUrlInCard,
+  RemoveUrlFromCard,
+} from "../../services/UserPreferences_Services/UrlCardServices";
 
 
+import { UserContext, ApplicationContext } from "../../app";
+import { useSearchParams } from "react-router-dom";
+
+import CardContainer from "../../components/CardContainer/CardContainer";
+import UrlCard from "../../components/Cards/UrlCard/UrlCard";
+import DashBoard from "../../components/dashboard/Dashboard";
 
 function Home() {
+  const User = useContext(UserContext).User;
 
-  const [User, SetUser] = useState({});
+  const EditMode = useContext(ApplicationContext).EditMode;
 
+  const [Layout, SetLayout] = useState();
+
+  const [UrlList, SetUrls] = useState([]);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    init();
-  }, []);
-
-  function Logout() {
-    localStorage.removeItem("tokens");
-    SetUser(null);
-  }
+    if (User != null) {
+      init();
+    }
+  }, [User]);
 
   async function init() {
-    const user = await GetLoggedinUser();
-    SetUser(user);
+    SetLayout(await GetLayout(User.id));
   }
-  
 
   return (
     <div className="App">
-
-      { !User &&
-        <GoogleLogin></GoogleLogin>
-      }
-
-      { User &&
+      {User && (
         <div>
-          <div>
-            <button onClick={Logout}>Logout</button>
-          </div>
-          <img src={User.picture}></img>
-          <div>{User.name} </div>
+          <DashBoard></DashBoard>
         </div>
-      }
+      )}
+      {!User && <h1>NIET INGELOGD SUKKEL!!!</h1>}
     </div>
   );
 }

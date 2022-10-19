@@ -1,5 +1,58 @@
 :root {
-  --Sunset-orange: #f77b07;
+  --sunset-orange: #ff9735;
+  --sunrise-blue: #52c8ff;
+
+
+  /* Important variables */
+  --accent-color: var(--sunrise-blue);
+  --text-color: white;
+  --roundness: 5px;
+  --bg-color: #1e1e1e;
+  --header-bg-color: #3c3c3c;
+  --header-height: 40px;
+  --header-padding: 5px;
+
+  /* Shadows */
+  --epic-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  --epic-shadow-inverted: rgba(0, 0, 0, 0.4) 0px 2px 4px inset, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px inset, rgba(0, 0, 0, 0.2) 0px -3px 0px, rgba(255, 255, 255, 0.1) 0px -5px 4px -4px inset;
+  --less-epic-shadow: inset rgba(0, 0, 0, 0.4) 0px 11px 5px -11px;
+
+  /* Cards */
+  --card-border: none;
+  --card-color: #42424b;
+  --card-color-2: #717181;
+  --card-color-2-hover: #949494;
+  --card-text-color: white;
+  --url-card-image-padding: 10px;
+
+  /* Columns */
+  --column-color: transparent;
+  --add-card-color: var(--card-color-2);
+  --add-card-border: 2px solid var(--card-color-2-hover);
+
+  /* Buttons */
+  --standard-btn-color:  #e6e6e6;
+  --standard-btn-text-color: black;
+  --standard-btn-border: none;
+  --standard-btn-radius: var(--roundness);
+  --standard-btn-shadow: var(--epic-shadow);
+  --standard-btn-shadow-active: var(--epic-shadow-inverted);
+
+  --cancel-btn-color: var(--standard-btn-color);
+  --cancel-btn-text-color: var(--standard-btn-text-color);
+
+  --delete-btn-color: rgb(255, 112, 131);
+  --delete-btn-text-color: black;
+
+  /* Inputs */
+  --input-width: 300px;
+  --input-bg-color: var(--card-color);
+  --input-text-color: var(--card-text-color);
+  --input-padding: 5px;
+  --input-shadow: var(--epic-shadow-inverted);
+  --input-roundness: var(--roundness);
+  --input-focus-outline: var(--accent-color) solid 2px ;
+
 }
 
 
@@ -10,6 +63,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 code {
@@ -17,12 +72,94 @@ code {
     monospace;
 }
 
+.popup-container {
+  background-color: var(--card-color-2);
+  border-radius: var(--roundness);
+  box-shadow: var(--epic-shadow), rgba(0, 0, 0, 0.3) 0px 0px 0px 10000px;
+  padding: 10px;
+  max-width: 90vw;
+}
 
 .cover {
   width: 100vw; 
-  height: 100vh; 
+  height: calc(100vh - var(--header-height) - var(--header-padding) - var(--header-padding)); 
   align-content: center; 
   justify-content: center;
   display: flex;
   background-color: black;
 }
+
+.auth-loading-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.cover-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--roundness);
+  transition-duration: 400ms;
+  background-color: var(--card-color);
+  border: 2px solid var(--bg-color);
+}
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--card-color-2);
+    
+  }
+
+button {
+  background-color: var(--standard-btn-color);
+  color: var(--standard-btn-text-color);
+  border: var(--standard-btn-border);
+  box-shadow: var(--standard-btn-shadow);
+  border-radius: var(--standard-btn-radius);
+  padding: 4px 8px;
+}
+
+button:hover {
+  filter: brightness(110%);
+}
+
+button:active {
+  box-shadow: var(--standard-btn-shadow-active);
+}
+
+.delete-btn {
+  background-color: var(--delete-btn-color);
+  color: var(--delete-btn-text-color);
+}
+
+input {
+  min-width: var(--input-width);
+  background-color: var(--input-bg-color);
+  border: none;
+  color: var(--input-text-color);
+  padding: var(--input-padding);
+  box-shadow: var(--input-shadow);
+  border-radius: var(--input-roundness);
+}
+
+input:focus-visible {
+  outline: var(--input-focus-outline);
+}
+
+/* :focus-visible {
+  outline: none;
+} */
+

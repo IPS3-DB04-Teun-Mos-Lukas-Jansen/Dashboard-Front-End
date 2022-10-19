@@ -2,10 +2,8 @@
 
 
 .dashboard-container {
-    /* border: 4px solid var(--Sunset-orange); */
-    background-color: pink;
-    padding: 1em;
-    margin: 2em 2em;
+    /* padding: 1em; */
+    /* margin: 2em 2em; */
     min-height: calc(100vh - 8em) ;
 }
 
