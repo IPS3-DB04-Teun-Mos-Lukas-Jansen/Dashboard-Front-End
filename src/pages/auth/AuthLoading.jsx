@@ -28,7 +28,7 @@ function AuthLoadingPage() {
 
     return (
         <div className="cover">
-            <img src="https://c.tenor.com/DHkIdy0a-UkAAAAM/loading-cat.gif" alt="loading..."></img>
+            <img className="auth-loading-image" src="https://c.tenor.com/DHkIdy0a-UkAAAAM/loading-cat.gif" alt="loading..."></img>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 .header {
     box-shadow: var(--epic-shadow);
     height: var(--header-height);
-    padding: 5px 0;
+    padding: var(--header-padding) 0;
     display: flex;
     flex-direction: row;
     background-color: var(--header-bg-color);
