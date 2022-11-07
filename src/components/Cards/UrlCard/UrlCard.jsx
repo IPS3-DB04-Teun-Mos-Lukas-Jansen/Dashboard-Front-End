@@ -60,8 +60,9 @@ function UrlComponent(props) {
                 <h3 className="popup-h3">Edit URL</h3>
                 <input
                   value={EditUrltext}
-                  onChange={(e) => SetEditUrltext(e.target.value)}
+                  onChange={(e) => SetEditUrltext(e.target.value) }
                   type="text"
+                  onKeyDown={(e) => { if (e.key == "Enter") {EditUrl(close)}}}
                 ></input>
                 <div className="delete-edit-popup-btns">
                   <button
@@ -143,8 +144,14 @@ export default function UrlCard(id, column, isDummy) {
   }
 
   async function AddUrl() {
-    const url = AddUrltext;
+    let url = AddUrltext;
     if (url != "") {
+      if (!(url.startsWith("https://") | url.startsWith("http://")))
+      {
+        url = "https://" + url;
+      }
+
+
       await AddUrlToCard(id, url);
       await ReloadCards();
     }
@@ -203,10 +210,8 @@ export default function UrlCard(id, column, isDummy) {
               <div className="popup-container">
                 <h3 className="popup-h3">Add URL</h3>
                 <input
-                  onSubmit={() => {
-                    AddUrl();
-                    close();
-                  }}
+                  
+                  onKeyDown={(e) => { if (e.key == "Enter") {AddUrl(); close()}}}
                   onChange={(e) => SetAddUrltext(e.target.value)}
                   type="text"
                 ></input>
