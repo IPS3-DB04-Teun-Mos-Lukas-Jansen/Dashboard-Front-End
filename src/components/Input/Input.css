@@ -1,0 +1,35 @@
+.input {
+    min-width: var(--input-width);
+    background-color: var(--input-bg-color);
+    border: none;
+    color: var(--input-text-color);
+    padding: var(--input-padding);
+    box-shadow: var(--input-shadow);
+    border-radius: var(--input-roundness);
+  }
+  
+  .input:focus-visible {
+    outline: var(--input-focus-outline);
+  }
+
+  [contenteditable="true"].input {
+    white-space: nowrap;
+    width:200px;
+    overflow: hidden;
+} 
+[contenteditable="true"].input br {
+    display:none;
+
+}
+[contenteditable="true"].input * {
+    display:inline;
+    white-space:nowrap;
+}
+
+.greytext {
+    color: var(--sunset-orange);
+}
+
+#urltext {
+    width: 100%;
+}

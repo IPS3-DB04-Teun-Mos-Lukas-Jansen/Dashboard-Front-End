@@ -15,6 +15,7 @@ import editImg from "../../../images/edit.svg";
 import moreImg from "../../../images/more.svg";
 import { InitContext } from "../../dashboard/Dashboard";
 import Popup from "reactjs-popup";
+import UrlInput from "../../Input/UrlInput";
 
 function UrlComponent(props) {
   const url = props.url.Url;
@@ -58,12 +59,18 @@ function UrlComponent(props) {
             {(close) => (
               <div className="popup-container edit-url-container">
                 <h3 className="popup-h3">Edit URL</h3>
+
                 <input
                   value={EditUrltext}
                   onChange={(e) => SetEditUrltext(e.target.value) }
                   type="text"
                   onKeyDown={(e) => { if (e.key == "Enter") {EditUrl(close)}}}
                 ></input>
+
+                <UrlInput text = {[EditUrltext, SetEditUrltext]}></UrlInput>
+
+                {EditUrltext}
+
                 <div className="delete-edit-popup-btns">
                   <button
                     onClick={() => {
