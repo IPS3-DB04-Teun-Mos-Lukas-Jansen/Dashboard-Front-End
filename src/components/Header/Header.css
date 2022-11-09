@@ -15,12 +15,18 @@
 }
 
 
-.spacer {
-    flex-grow: 1;
+
+
+.left-btns-container {
+    justify-self: flex-start;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
 }
 
 .profile-info {
-    justify-self: flex-end;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,24 +34,9 @@
     padding: 0 10px;
 }
 
-.icon-btn {
+.header-icon-btn {
     height: 80%;
-    display: flex;
     margin-right: 10px;
-    align-items: center;
-}
-
-.icon-btn img {
-    height: 100%;
-    opacity: 80%;
-}
-
-.icon-btn:hover {
-    background-color: #ffffff2e;
-    border-radius: var(--roundness);
-}
-.icon-btn:active {
-    background-color: #ffffff5e;
 }
 
 
