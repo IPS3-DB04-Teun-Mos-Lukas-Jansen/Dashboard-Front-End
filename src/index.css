@@ -16,6 +16,8 @@
 
   --sidebar-bg-color: var(--header-bg-color);
   --sidebar-top-bg-color: var(--bg-color);
+  --sidebar-width: 250px;
+  --sidebar-trans-duration: 800ms;
 
   /* Shadows */
   --epic-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -198,5 +200,5 @@ input:focus-visible {
 }
 
 .content {
-  width: 100%;
+  flex-grow: 1;
 }
