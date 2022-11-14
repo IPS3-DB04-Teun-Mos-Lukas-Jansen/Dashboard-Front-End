@@ -1,19 +1,19 @@
 .sidebar-container {
-    /* width: 0;
-    height: 0;
-    position: relative; */
+    transition-duration: var(--sidebar-trans-duration);
+    overflow: hidden;
+    display: flex;
+    width: 0;
+    flex-shrink: 0;
 }
 
 .sidebar {
     background-color: var(--sidebar-bg-color);
     box-shadow: var(--epic-shadow);
-    /* position: absolute;
-    top: 0;
-    left: 0; */
     z-index: 99;
-    width: 250px;
+    min-width: var(--sidebar-width) ;
     height: 100vh;
-
+    transition-duration: var(--sidebar-trans-duration);    
+    translate: calc( 0px - var(--sidebar-width) );
 }
 
 .sidebar-top {
@@ -72,4 +72,9 @@
 .sidebar-page-btn-icon img {
     aspect-ratio: 1;
     height: 60%;
+}
+
+#sidebar-show-btn {
+    z-index: 100;
+    transition-duration: calc( ) /*var(--sidebar-trans-duration)*/;
 }

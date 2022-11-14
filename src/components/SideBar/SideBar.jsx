@@ -1,40 +1,83 @@
 import React, { useContext } from "react";
-import { SideBarContext, UserContext } from "../../app";
+import { UserContext } from "../../app";
 import "./SideBar.css";
 import { Link } from "react-router-dom";
+import { SideBarContext } from "./SideBarContextProvider";
 
 import MenuBtnImg from "../../images/MenuBtnImg.svg";
 import SettingsImg from "../../images/settings.svg";
 import ThemeImg from "../../images/theme.svg";
 import HomeImg from "../../images/home.svg";
 import IntergrationsImg from "../../images/intergrations.svg";
+import { useEffect } from "react";
+import { hasUnreliableEmptyValue } from "@testing-library/user-event/dist/utils";
 
 export default function SideBar() {
   const SideBarShown = useContext(SideBarContext).SideBarShown;
   const SetSideBarShown = useContext(SideBarContext).SetSideBarShown;
+  const targetedwidth = getComputedStyle(document.documentElement).getPropertyValue("--sidebar-width");
+  const transduration = getComputedStyle(document.documentElement).getPropertyValue("--sidebar-trans-duration");
+
+
+
   const User = useContext(UserContext).User;
 
+  useEffect(() => {
+    if (document.getElementById("sb") != null) {
+
+      calculateBtnTransistionTime();
+
+      if (SideBarShown) {
+        show();
+      }
+      else {
+        hide();
+      }
+    }
+    
+  }, [SideBarShown]);
+
+  function show() {
+    document.getElementById("sidebar-show-btn").style.transitionDelay = "0ms";
+    document.getElementById("sidebar-show-btn").style.transitionTimingFunction = "linear";
+    document.getElementById("sidebar-show-btn").style.translate = "calc( -10px - var(--header-height) )";
+
+    document.getElementById("sb-container").style.width = targetedwidth; 
+    document.getElementById("sb").style.translate = 0;
+
+  }
+
+  function hide() {
+
+    document.getElementById("sidebar-show-btn").style.transitionDelay = "0ms";
+    document.getElementById("sidebar-show-btn").style.transitionDuration = transduration;
+    document.getElementById("sidebar-show-btn").style.transitionTimingFunction = "ease-out";
+    document.getElementById("sidebar-show-btn").style.translate = 0; 
+    
+    document.getElementById("sb-container").style.width = 0; 
+    document.getElementById("sb").style.translate = "calc( 0px - var(--sidebar-width) )"; 
+
+  }
+
+  function calculateBtnTransistionTime() {
+    const _targetedwidth = parseInt(targetedwidth);
+    const _transduration = parseInt(transduration)/1000;
+    const secondsPerPixel = _transduration / _targetedwidth;
+    const width = document.getElementById("sidebar-show-btn").offsetWidth;
+    const btnTransdurationInMs = secondsPerPixel*1000 * width;
+
+    document.getElementById("sidebar-show-btn").style.transitionDuration = btnTransdurationInMs + "ms";
+    return btnTransdurationInMs;
+  }
+
   return (
-    <div className="sidebar-container">
-      {User && SideBarShown && (
-        <div className="sidebar">
+    <div id="sb-container" className="sidebar-container">
+      {User && (
+        <div id="sb" className="sidebar">
 
           <div className="sidebar-top">
             <span>Monkodash</span>
             <div className="spacer"></div>
-            <div className="sidebar-close-btn">
-              <div
-                className="icon-btn sidebar-close-icon"
-                onClick={() => {
-                  SetSideBarShown(!SideBarShown);
-                }}
-              >
-                <img src={MenuBtnImg}></img>
-              </div>
-            </div>
-
-            
-
           </div>
 
           <div className="sidebar-page-list">

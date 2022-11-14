@@ -5,7 +5,7 @@ import { UserContext, ApplicationContext } from "../../app";
 import { GoogleLoginButton } from "../LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import "./Header.css";
 import LogoutImg from "../../images/logout.svg";
-import { SideBarContext } from "../../app";
+import { SideBarContext } from "../SideBar/SideBarContextProvider";
 import MenuBtnImg from "../../images/MenuBtnImg.svg"
 
 export default function Header() {
@@ -23,14 +23,16 @@ export default function Header() {
     }
   }, [User]);
 
+
+
   function toggleEditMode() {
     SetEditMode(!EditMode);
   }
 
   return (
     <div className="header">
-      {User && !SideBarshown && (
-        <div className="left-btns-container">
+      {User && (
+        <div id="sidebar-show-btn" className="left-btns-container">
           <div
             className="icon-btn header-icon-btn"
             onClick={() => {
