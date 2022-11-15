@@ -17,8 +17,8 @@ import { InitContext } from "../../dashboard/Dashboard";
 import Popup from "reactjs-popup";
 
 function UrlComponent(props) {
-  const url = props.url.Url;
-  const urlId = props.url.UrlId;
+  const url = props.url.url;
+  const urlId = props.url.urlId;
   const cardId = props.cardId;
   const urlImg =
     "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=" +
@@ -36,7 +36,8 @@ function UrlComponent(props) {
   async function EditUrl(close) {
     if (EditUrltext != "") {
       await UpdateUrlInCard(cardId, urlId, EditUrltext);
-      close();
+      SetEditUrltext("");
+      close();  
       ReloadCards();
     }
   }
@@ -126,16 +127,16 @@ export default function UrlCard(id, column, isDummy) {
   async function Init() {
     if (isDummy != null && isDummy == true) {
       const urlList = [
-        { UrlId: "dummy", Url: "https://www.youtube.com/" },
-        { UrlId: "dummy", Url: "https://minecraft.net/" },
-        { UrlId: "dummy", Url: "https://spotify.com/" },
+        { urlId: "dummy", url: "https://www.youtube.com/" },
+        { urlId: "dummy", url: "https://minecraft.net/" },
+        { urlId: "dummy", url: "https://spotify.com/" },
       ];
       SetUrlList(urlList);
     } else {
       const card = await GetUrlCard(id);
-      SetUrlList(card.Urls);
+      SetUrlList(card.urls);
 
-      if (!EditMode & (card.Urls.length < 1)) {
+      if (!EditMode & (card.urls.length < 1)) {
         SetEmpty(true);
       } else {
         SetEmpty(false);
@@ -154,6 +155,7 @@ export default function UrlCard(id, column, isDummy) {
 
       await AddUrlToCard(id, url);
       await ReloadCards();
+      SetAddUrltext("");
     }
   }
 

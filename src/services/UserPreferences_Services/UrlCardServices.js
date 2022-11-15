@@ -31,8 +31,8 @@ export async function AddUrlToCard(cardId, url) {
 export async function UpdateUrlInCard(cardId, urlId, newUrl) {
   await axios.put(API_URL + cardId + "/url", null, {
     params: {
-      urlId: urlId,
-      newUrl: newUrl,
+      url_id: urlId,
+      new_url: newUrl,
     },
   });
 }
@@ -40,7 +40,7 @@ export async function UpdateUrlInCard(cardId, urlId, newUrl) {
 export async function RemoveUrlFromCard(cardId, urlId) {
   await axios.delete(API_URL + cardId + "/url", {
     params: {
-      urlId: urlId,
+      url_id: urlId,
     },
   });
 }

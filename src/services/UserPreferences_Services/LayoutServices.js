@@ -12,8 +12,8 @@ export async function GetLayout(userId) {
 export async function AddCardToLayout(userId, columnNumber, cardId, type) {
     return await axios.post(API_URL + "card/" + userId, null, {
         params: {
-            columnNumber : columnNumber,
-            cardId : cardId,
+            column_number : columnNumber,
+            card_id : cardId,
             type : type
         },
     }).then((res) => { return res.data}); 
@@ -22,8 +22,8 @@ export async function AddCardToLayout(userId, columnNumber, cardId, type) {
 export async function RemoveCardFromLayout(userId, columnNumber, cardId) {
     return await axios.delete(API_URL + "card/" + userId, {
         params: {
-            columnNumber: columnNumber,
-            cardId : cardId
+            column_number: columnNumber,
+            card_id : cardId
         },
       });
 }
@@ -31,7 +31,7 @@ export async function RemoveCardFromLayout(userId, columnNumber, cardId) {
 export async function RemoveColumnFromLayout(userId, columnNumber) {
     return await axios.delete(API_URL + "column/" + userId, {
         params: {
-            columnNumber: columnNumber
+            column_number: columnNumber
         },
       });
 }
