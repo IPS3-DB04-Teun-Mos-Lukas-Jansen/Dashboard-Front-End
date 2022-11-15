@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext, ApplicationContext } from "../../app";
 import { GoogleLoginButton } from "../LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import "./Header.css";
@@ -17,13 +15,6 @@ export default function Header() {
 
   const SetSideBarshown = useContext(SideBarContext).SetSideBarShown;
   const SideBarshown = useContext(SideBarContext).SideBarShown;
-
-  useEffect(() => {
-    if (User != null) {
-    }
-  }, [User]);
-
-
 
   function toggleEditMode() {
     SetEditMode(!EditMode);
