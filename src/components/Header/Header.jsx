@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext, ApplicationContext } from "../../app";
 import { GoogleLoginButton } from "../LoginComponents/GoogleLoginComponent/GoogleLoginButton";
 import "./Header.css";
