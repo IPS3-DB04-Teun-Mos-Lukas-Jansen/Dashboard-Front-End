@@ -27,8 +27,6 @@ function UrlComponent(props) {
 
   const ReloadCards = useContext(InitContext);
 
-  // useEffect(() => { }, []);
-
   const [EditUrltext, SetEditUrltext] = useState(url);
 
   const EditMode = useContext(ApplicationContext).EditMode;
@@ -125,7 +123,7 @@ export default function UrlCard(id, column, isDummy) {
   }, [EditMode, ReloadCards]);
 
   async function Init() {
-    if (isDummy != null && isDummy == true) {
+    if (isDummy != null && isDummy) {
       const urlList = [
         { urlId: "dummy", url: "https://www.youtube.com/" },
         { urlId: "dummy", url: "https://minecraft.net/" },

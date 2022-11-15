@@ -56,6 +56,10 @@
 
 .card-delete-btn {
     position: relative;
+    border-radius: 0 0 var(--roundness) var(--roundness) ;
+    background-color: #ffffff2a;
+    transition-duration: 100ms;
+    cursor: pointer;
 }
 
 .card-edit-buttons {
@@ -95,13 +99,6 @@
     transition-duration: 100ms;
 }
 
-.card-delete-btn {
-    border-radius: 0 0 var(--roundness) var(--roundness) ;
-    background-color: #ffffff2a;
-    /* box-shadow: var(--less-epic-shadow) ; */
-    transition-duration: 100ms;
-    cursor: pointer;
-}
 
 .card-delete-btn:hover {
     background-color: red;
