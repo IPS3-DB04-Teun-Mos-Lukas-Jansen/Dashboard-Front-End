@@ -48,7 +48,6 @@ export async function GetAccessToken() {
     const tokens = JSON.parse(tokenstring);
 
 
-
     const checkedtoken = await CheckAccesToken(tokens.access_token);
     
     //If access token is valid, return the acces token
@@ -57,13 +56,14 @@ export async function GetAccessToken() {
         //Else check if refresh token is valid, if true get new access token, else null;
 
         const newAccesToken = await RequestAccesToken(tokens.refresh_token);
+        
 
         if (newAccesToken == null){
             return null;
         }
 
-
         tokens.access_token = newAccesToken.access_token;
+        tokens.id_token = newAccesToken.id_token;
 
         localStorage.setItem("tokens", JSON.stringify(tokens));
 
