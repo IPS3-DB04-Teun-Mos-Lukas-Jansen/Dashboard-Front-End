@@ -28,6 +28,7 @@ function UrlComponent(props) {
   const ReloadCards = useContext(InitContext);
 
   const [EditUrltext, SetEditUrltext] = useState(url);
+  const [editUrlOpen, setEditUrlOpen] = useState(false);
 
   const EditMode = useContext(ApplicationContext).EditMode;
 
@@ -39,22 +40,32 @@ function UrlComponent(props) {
     }
   }
 
-  async function DeleteUrl() {
+  async function DeleteUrl(close) {
     await RemoveUrlFromCard(cardId, urlId);
+    close();
     ReloadCards();
+  }
+
+  function startEdit() {
+    console.log("start edit");
+    SetEditUrltext(url);
   }
 
   return (
     <div className="single-url">
       {EditMode && (
         <div className="edit-url-button-container">
+          <img onClick={()=> {startEdit(); setEditUrlOpen(true);}} className="edit-url-button" src={editImg}></img>
           <Popup
-            trigger={<img className="edit-url-button" src={editImg}></img>}
+            open={editUrlOpen}
             modal
             nested
+            onClose={() => setEditUrlOpen(false)}
           >
             {(close) => (
+              
               <div className="popup-container edit-url-container">
+                
                 <h3 className="popup-h3">Edit URL</h3>
                 <input
                   value={EditUrltext}
@@ -75,14 +86,14 @@ function UrlComponent(props) {
                     trigger={<button className="delete-btn">Delete URL</button>}
                     modal
                   >
-                    {(close) => (
+                    {(close2) => (
                       <div className="popup-container delete-popup">
                         Are you sure you want to delete this URL link?
                         <div className="delete-edit-popup-btns">
-                          <button onClick={() => DeleteUrl()}>
+                          <button onClick={() => DeleteUrl(close)}>
                             Yes, I'm sure
                           </button>
-                          <button onClick={() => close()}>
+                          <button onClick={() => close2()}>
                             No
                           </button>
                         </div>
@@ -112,7 +123,6 @@ export default function UrlCard(id, column, isDummy) {
   const [AddUrltext, SetAddUrltext] = useState("");
 
   const EditMode = useContext(ApplicationContext).EditMode;
-  const user = useContext(UserContext).User;
   const ReloadCards = useContext(InitContext);
 
   const [EditModeViewMore, SetViewMore] = useState(false);

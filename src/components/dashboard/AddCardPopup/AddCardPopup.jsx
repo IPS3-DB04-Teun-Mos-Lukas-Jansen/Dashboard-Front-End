@@ -8,9 +8,6 @@ import {AddCardToLayout} from "../../../services/UserPreferences_Services/Layout
 import { UserContext } from "../../../app";
 
 export default function AddCardPopup(props) {
-
-    const User = useContext(UserContext).User;
-
     
   function ClosePopup() {
     props.ClosePopup();
