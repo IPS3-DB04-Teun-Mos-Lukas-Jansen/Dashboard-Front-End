@@ -38,7 +38,7 @@ async function RequestAccesToken(refreshtoken) {
 
 
 //Returns an Accesstoken or null
-export async function GetAccessToken() {
+export async function GetTokenObject() {
 
     //Get tokens from local storage
     const tokenstring = localStorage.getItem("tokens");
@@ -67,11 +67,19 @@ export async function GetAccessToken() {
 
         localStorage.setItem("tokens", JSON.stringify(tokens));
 
-        return newAccesToken.access_token;
+        return newAccesToken;
     }
     else {
-        return tokens.access_token;
+        return tokens;
     };
     
 };
+
+export async function GetAccessToken() {
+    const token = await GetTokenObject();
+    if (token != null) {
+        return token.access_token;
+    }
+    return null;
+}
 

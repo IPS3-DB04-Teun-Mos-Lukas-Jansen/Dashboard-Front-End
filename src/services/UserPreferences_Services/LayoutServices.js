@@ -1,16 +1,18 @@
 import axios from "axios";
-
+import { GetTokenObject } from "../Google_Services/GoogleAuthServices";
 
 const API_URL = process.env.REACT_APP_USER_PREFRERENCES_URL + "/api/v1/layout/";
 
-export async function GetLayout(userId) {
-    return await axios.get(API_URL + userId).then((res) => {
+export async function GetLayout() {
+    const token = await GetTokenObject();
+    return await axios.get(API_URL + token.id_token).then((res) => {
         return res.data;
       });
 }
 
-export async function AddCardToLayout(userId, columnNumber, cardId, type) {
-    return await axios.post(API_URL + "card/" + userId, null, {
+export async function AddCardToLayout(columnNumber, cardId, type) {
+    const token = await GetTokenObject();
+    return await axios.post(API_URL + "card/" + token.id_token, null, {
         params: {
             column_number : columnNumber,
             card_id : cardId,
@@ -19,8 +21,9 @@ export async function AddCardToLayout(userId, columnNumber, cardId, type) {
     }).then((res) => { return res.data}); 
 }
 
-export async function RemoveCardFromLayout(userId, columnNumber, cardId) {
-    return await axios.delete(API_URL + "card/" + userId, {
+export async function RemoveCardFromLayout(columnNumber, cardId) {
+    const token = await GetTokenObject();
+    return await axios.delete(API_URL + "card/" + token.id_token, {
         params: {
             column_number: columnNumber,
             card_id : cardId
@@ -28,8 +31,9 @@ export async function RemoveCardFromLayout(userId, columnNumber, cardId) {
       });
 }
 
-export async function RemoveColumnFromLayout(userId, columnNumber) {
-    return await axios.delete(API_URL + "column/" + userId, {
+export async function RemoveColumnFromLayout(columnNumber) {
+    const token = await GetTokenObject();
+    return await axios.delete(API_URL + "column/" + token.id_token, {
         params: {
             column_number: columnNumber
         },

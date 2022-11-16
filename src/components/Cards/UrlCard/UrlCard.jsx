@@ -34,7 +34,6 @@ function UrlComponent(props) {
   async function EditUrl(close) {
     if (EditUrltext != "") {
       await UpdateUrlInCard(cardId, urlId, EditUrltext);
-      SetEditUrltext("");
       close();  
       ReloadCards();
     }
@@ -158,8 +157,8 @@ export default function UrlCard(id, column, isDummy) {
   }
 
   async function DeleteUrlCard() {
-    await RemoveCardFromLayout(user.id, column, id);
     await RemoveUrlCard(id);
+    await RemoveCardFromLayout(column, id);
     await ReloadCards();
   }
 

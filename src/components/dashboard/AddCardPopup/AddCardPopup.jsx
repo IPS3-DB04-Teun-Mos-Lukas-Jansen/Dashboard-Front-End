@@ -18,7 +18,7 @@ export default function AddCardPopup(props) {
 
   async function AddUrlCardToLayout() {
     const cardId = await AddUrlCard();
-    await AddCardToLayout(User.id, props.SelectedColumn,cardId, "Url");
+    await AddCardToLayout(props.SelectedColumn,cardId, "Url");
 
     ClosePopup();
   }
