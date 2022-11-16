@@ -8,7 +8,7 @@ import {
 } from "../../../services/UserPreferences_Services/UrlCardServices";
 import { RemoveCardFromLayout } from "../../../services/UserPreferences_Services/LayoutServices";
 import "./UrlCard.css";
-import { ApplicationContext, UserContext } from "../../../app";
+import { ApplicationContext } from "../../../app";
 import addImg from "../../../images/add.svg";
 import deleteImg from "../../../images/delete.svg";
 import editImg from "../../../images/edit.svg";

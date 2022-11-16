@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardContainer from "../../CardContainer/CardContainer";
 import "./AddCardPopup.css";
 
 import {AddUrlCard} from "../../../services/UserPreferences_Services/UrlCardServices"
 import {AddCardToLayout} from "../../../services/UserPreferences_Services/LayoutServices"
-
-import { UserContext } from "../../../app";
 
 export default function AddCardPopup(props) {
     
