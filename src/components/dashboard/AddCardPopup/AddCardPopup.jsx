@@ -1,16 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardContainer from "../../CardContainer/CardContainer";
 import "./AddCardPopup.css";
 
 import {AddUrlCard} from "../../../services/UserPreferences_Services/UrlCardServices"
 import {AddCardToLayout} from "../../../services/UserPreferences_Services/LayoutServices"
 
-import { UserContext } from "../../../app";
-
 export default function AddCardPopup(props) {
-
-    const User = useContext(UserContext).User;
-
     
   function ClosePopup() {
     props.ClosePopup();
@@ -18,7 +13,7 @@ export default function AddCardPopup(props) {
 
   async function AddUrlCardToLayout() {
     const cardId = await AddUrlCard();
-    await AddCardToLayout(User.id, props.SelectedColumn,cardId, "Url");
+    await AddCardToLayout(props.SelectedColumn,cardId, "Url");
 
     ClosePopup();
   }

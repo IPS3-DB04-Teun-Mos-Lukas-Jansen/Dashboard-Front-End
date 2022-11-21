@@ -8,7 +8,7 @@ import {
 } from "../../../services/UserPreferences_Services/UrlCardServices";
 import { RemoveCardFromLayout } from "../../../services/UserPreferences_Services/LayoutServices";
 import "./UrlCard.css";
-import { ApplicationContext, UserContext } from "../../../app";
+import { ApplicationContext } from "../../../app";
 import addImg from "../../../images/add.svg";
 import deleteImg from "../../../images/delete.svg";
 import editImg from "../../../images/edit.svg";
@@ -28,34 +28,44 @@ function UrlComponent(props) {
   const ReloadCards = useContext(InitContext);
 
   const [EditUrltext, SetEditUrltext] = useState(url);
+  const [editUrlOpen, setEditUrlOpen] = useState(false);
 
   const EditMode = useContext(ApplicationContext).EditMode;
 
   async function EditUrl(close) {
     if (EditUrltext != "") {
       await UpdateUrlInCard(cardId, urlId, EditUrltext);
-      SetEditUrltext("");
       close();  
       ReloadCards();
     }
   }
 
-  async function DeleteUrl() {
+  async function DeleteUrl(close) {
     await RemoveUrlFromCard(cardId, urlId);
+    close();
     ReloadCards();
+  }
+
+  function startEdit() {
+    console.log("start edit");
+    SetEditUrltext(url);
   }
 
   return (
     <div className="single-url">
       {EditMode && (
         <div className="edit-url-button-container">
+          <img onClick={()=> {startEdit(); setEditUrlOpen(true);}} className="edit-url-button" src={editImg}></img>
           <Popup
-            trigger={<img className="edit-url-button" src={editImg}></img>}
+            open={editUrlOpen}
             modal
             nested
+            onClose={() => setEditUrlOpen(false)}
           >
             {(close) => (
+              
               <div className="popup-container edit-url-container">
+                
                 <h3 className="popup-h3">Edit URL</h3>
                 <input
                   value={EditUrltext}
@@ -76,14 +86,14 @@ function UrlComponent(props) {
                     trigger={<button className="delete-btn">Delete URL</button>}
                     modal
                   >
-                    {(close) => (
+                    {(close2) => (
                       <div className="popup-container delete-popup">
                         Are you sure you want to delete this URL link?
                         <div className="delete-edit-popup-btns">
-                          <button onClick={() => DeleteUrl()}>
+                          <button onClick={() => DeleteUrl(close)}>
                             Yes, I'm sure
                           </button>
-                          <button onClick={() => close()}>
+                          <button onClick={() => close2()}>
                             No
                           </button>
                         </div>
@@ -113,7 +123,6 @@ export default function UrlCard(id, column, isDummy) {
   const [AddUrltext, SetAddUrltext] = useState("");
 
   const EditMode = useContext(ApplicationContext).EditMode;
-  const user = useContext(UserContext).User;
   const ReloadCards = useContext(InitContext);
 
   const [EditModeViewMore, SetViewMore] = useState(false);
@@ -158,8 +167,8 @@ export default function UrlCard(id, column, isDummy) {
   }
 
   async function DeleteUrlCard() {
-    await RemoveCardFromLayout(user.id, column, id);
     await RemoveUrlCard(id);
+    await RemoveCardFromLayout(column, id);
     await ReloadCards();
   }
 

@@ -57,7 +57,7 @@ function DashBoard() {
   }, [User]);
 
   async function init() {
-    SetLayout(await GetLayout(User.id));
+    SetLayout(await GetLayout());
   }
 
   async function ShowAddCardPopup(columnNumer) {
