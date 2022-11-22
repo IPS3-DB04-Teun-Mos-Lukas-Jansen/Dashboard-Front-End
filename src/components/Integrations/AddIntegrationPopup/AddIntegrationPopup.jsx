@@ -1,7 +1,21 @@
+import { useEffect } from "react";
 import Popup from "reactjs-popup";
 import "./AddIntegrationPopup.css";
+import { GetAllAvailableIntegrations } from "../../../services/Integration_Services/IntegrationService";
 
 export default function AddIntegrationPopup(props) {
+
+    useEffect(() => {
+        init();	
+    }, []);
+
+    async function init() {
+        console.log("init");
+        const availableIntegrations =  await GetAllAvailableIntegrations();
+        console.log(availableIntegrations);
+
+    }
+
   return (
     <Popup open={props.isOpen} onClose={() => props.setOpen(false)} modal>
       <div className="add-integration-popup-container">
