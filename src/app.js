@@ -7,6 +7,7 @@ import { GetLoggedinUser } from "./services/Google_Services/GoogleProfileService
 import Header from "./components/Header/Header.jsx";
 import SideBar from "./components/SideBar/SideBar";
 import SideBarContextProvider from "./components/SideBar/SideBarContextProvider.jsx";
+import IntegrationsPage from "./pages/Integrations/IntegrationsPage.jsx";
 
 export const UserContext = React.createContext(null);
 export const ApplicationContext = React.createContext(null);
@@ -43,6 +44,7 @@ export default function App() {
                       <Route index element={<Home />} />
                       <Route path="*" element={<NotFound />} />
                       <Route path="/auth" element={<AuthLoadingPage />} />
+                      <Route path="/Intergrations" element={<IntegrationsPage/>} />
                     </Route>
                   </Routes>
                 </BrowserRouter>
