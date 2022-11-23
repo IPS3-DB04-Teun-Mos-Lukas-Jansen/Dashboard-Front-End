@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetTokenObject } from "../../Google_Services/GoogleAuthServices";
 
-const API_URL = process.env.REACT_APP_INTEGRATIONS_URL_INSECURE + "/";
+const API_URL = process.env.REACT_APP_INTEGRATIONS_URL_INSECURE + "/openweathermap/";
 
 export async function SetOpenWeatherMapCredentials(isActive, cityName) {
     const token = await GetTokenObject();
