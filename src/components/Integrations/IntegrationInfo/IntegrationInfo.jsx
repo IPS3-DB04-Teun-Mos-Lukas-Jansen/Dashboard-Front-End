@@ -1,12 +1,10 @@
 import "./IntegrationInfo.css";
 import Switch from "react-switch";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import Popup from "reactjs-popup";
 
 import ConfigureImg from "../../../images/settings.svg";
-import DeleteImg from "../../../images/delete.svg";
 import MoreImg from "../../../images/more.svg";
-import { useEffect } from "react";
 import IntegrationConfigurationPopup from "../IntegrationConfigurationPopup/IntegrationConfigurationPopup";
 import { integrationsContext } from "../../../pages/Integrations/IntegrationsPage";
 import { DeleteIntegrationCredentials } from "../../../services/Integration_Services/IntegrationService";
@@ -19,10 +17,8 @@ export default function IntegrationInfo(props) {
   const reloadIntegrations = useContext(integrationsContext).init;
 
   async function ToggleIntegration(state) {
-    console.log(props.integration.credentials);
     await setConfig(currentIntegrationInfo, [state , props.integration.credentials.City]);
     setIsEnabled(state);
-    console.log(props); //todo: update integration state
     setIntegrationActiveColor(state);
     await reloadIntegrations();
   }
@@ -48,10 +44,11 @@ export default function IntegrationInfo(props) {
 
   useEffect(() => {
     props.allIntegrations.map((integrationInfo) => {
-      if (integrationInfo.className == props.integration.name)
+      if (integrationInfo.className == props.integration.name) {
         setCurrentIntegrationInfo(integrationInfo);
         setIsEnabled(props.integration.credentials.Active);
         setIntegrationActiveColor(props.integration.credentials.Active);
+      }
     });
   }, [props.allIntegrations]);
 

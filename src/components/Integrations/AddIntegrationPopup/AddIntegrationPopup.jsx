@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "./AddIntegrationPopup.css";
-import { GetAllAvailableIntegrations } from "../../../services/Integration_Services/IntegrationService";
 import IntegrationConfigurationPopup from "../IntegrationConfigurationPopup/IntegrationConfigurationPopup";
 
 export default function AddIntegrationPopup(props) {
