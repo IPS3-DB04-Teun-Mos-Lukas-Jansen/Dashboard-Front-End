@@ -4,6 +4,7 @@ import Column from "../dashboard/column/Column";
 import { UserContext, ApplicationContext } from "../../app";
 import { GetLayout } from "../../services/UserPreferences_Services/LayoutServices";
 import AddCardPopup from "./AddCardPopup/AddCardPopup";
+import { GetIntegrationCredentials } from "../../services/Integration_Services/IntegrationService";
 
 function GetColumnAmount() {
   return Math.min(Math.round((window.innerWidth - 64) / 340), 5);
@@ -50,6 +51,8 @@ function DashBoard() {
   const [IsAddCardPopupShown, SetAddCardPopupShown] = useState(false);
   const [SelectedColumn, SetSelectedColumn] = useState(0);
 
+  const [ActiveIntegrations, SetActiveIntegrations] = useState([]);
+
   useEffect(() => {
     if (User != null) {
       init();
@@ -58,6 +61,7 @@ function DashBoard() {
 
   async function init() {
     SetLayout(await GetLayout());
+    SetActiveIntegrations( await GetIntegrationCredentials());
   }
 
   async function ShowAddCardPopup(columnNumer) {
@@ -85,6 +89,7 @@ function DashBoard() {
           <AddCardPopup
             ClosePopup={ClosePopup}
             SelectedColumn={SelectedColumn}
+            ActiveIntegrations={ActiveIntegrations}
           ></AddCardPopup>
         )}
       </InitContext.Provider>

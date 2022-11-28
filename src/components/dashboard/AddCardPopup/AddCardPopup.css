@@ -50,6 +50,7 @@
     align-items: center;
     height: fit-content;
     width: fit-content;
+    width: -webkit-fill-available;
 }
 
 .card-list-item:hover {

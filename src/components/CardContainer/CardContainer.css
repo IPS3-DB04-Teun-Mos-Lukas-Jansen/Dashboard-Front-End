@@ -8,4 +8,6 @@
     border: var(--card-border);
     color: var(--text-color);
     min-height: 70px;
+    
+    overflow: hidden;
 }

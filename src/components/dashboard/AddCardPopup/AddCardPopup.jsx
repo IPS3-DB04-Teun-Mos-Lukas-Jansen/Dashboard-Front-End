@@ -18,6 +18,12 @@ export default function AddCardPopup(props) {
     ClosePopup();
   }
 
+  async function AddIntegrationCardToLayout(cardType) {
+    const cardId = Math.random().toString(36).substring(10, 30);
+    await AddCardToLayout(props.SelectedColumn,cardId, cardType);
+    ClosePopup();
+  }
+
   return (
     <div className="add-card-popup-container">
       <div className="add-card-popup">
@@ -33,6 +39,24 @@ export default function AddCardPopup(props) {
               <div>URL-Card</div>
             </div>
             {/* End of URL Card */}
+
+            {/* Get all integrations */}
+            {
+              props.ActiveIntegrations.map((integration) => {
+                console.log(integration);
+                if (integration.credentials.Active) { 
+                return (
+                  <div className="card-list-item" key={integration.name} onClick={()=> {AddIntegrationCardToLayout(integration.name)}}>
+                    <div style={{ pointerEvents: "none", width: "100%" }}>
+                      <CardContainer card={{ cardType: (integration.name + "-dummy") }}></CardContainer>
+                    </div>
+
+                    <div>{integration.name}</div>
+                  </div>
+                );
+              }
+              })
+            }
 
           </div>
         </div>
