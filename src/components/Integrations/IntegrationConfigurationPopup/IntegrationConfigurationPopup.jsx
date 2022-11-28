@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Popup from "reactjs-popup";
 import Switch from "react-switch";
 import "../AddIntegrationPopup/AddIntegrationPopup.css";
-import setConfig  from "./setConfig";
+import setConfig  from "../setConfig";
 import { integrationsContext } from "../../../pages/Integrations/IntegrationsPage";
 
 const configurationValueContext = React.createContext();

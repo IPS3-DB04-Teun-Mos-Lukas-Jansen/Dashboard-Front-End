@@ -10,20 +10,35 @@ import { useEffect } from "react";
 import IntegrationConfigurationPopup from "../IntegrationConfigurationPopup/IntegrationConfigurationPopup";
 import { integrationsContext } from "../../../pages/Integrations/IntegrationsPage";
 import { DeleteIntegrationCredentials } from "../../../services/Integration_Services/IntegrationService";
+import setConfig  from "../setConfig";
 
 export default function IntegrationInfo(props) {
   const [currentIntegrationInfo, setCurrentIntegrationInfo] = useState();
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(props.integration.credentials.Active);
   const [configOpen, setConfigOpen] = useState(false);
   const reloadIntegrations = useContext(integrationsContext).init;
 
-  function ToggleIntegration(state) {
+  async function ToggleIntegration(state) {
+    console.log(props.integration.credentials);
+    await setConfig(currentIntegrationInfo, [state , props.integration.credentials.City]);
     setIsEnabled(state);
-    console.log(props.integration.credentials.Active); //todo: update integration state
+    console.log(props); //todo: update integration state
+    setIntegrationActiveColor(state);
+    await reloadIntegrations();
   }
 
   function configureIntegration() {
     setConfigOpen(true);
+  }
+
+  function setIntegrationActiveColor(state) {
+
+    document.getElementById(props.integration.name).style.transitionDuration = "0.5s";
+    if (state) {
+      document.getElementById(props.integration.name).style.filter = "saturate(100%) brightness(100%)";
+    } else {
+    document.getElementById(props.integration.name).style.filter = "saturate(0) brightness(90%)";
+    }
   }
 
   async function deleteIntegration() {
@@ -35,11 +50,13 @@ export default function IntegrationInfo(props) {
     props.allIntegrations.map((integrationInfo) => {
       if (integrationInfo.className == props.integration.name)
         setCurrentIntegrationInfo(integrationInfo);
+        setIsEnabled(props.integration.credentials.Active);
+        setIntegrationActiveColor(props.integration.credentials.Active);
     });
   }, [props.allIntegrations]);
 
   return (
-    <div className="integration-info-container">
+    <div id={props.integration.name}  className="integration-info-container">
       <IntegrationConfigurationPopup 
         isOpen={configOpen}
         setOpen={setConfigOpen}
@@ -88,6 +105,14 @@ export default function IntegrationInfo(props) {
                 NO CONFIG!
               </div>
             )}
+           {
+              !props.integration.credentials.Active && ( 
+                <div className="integration-info-inactive-container">
+                  Inegration Disabled
+                </div>
+                )
+           }
+
             <div className="spacer"></div>
 
             <div className="integration-info-bottom-container">

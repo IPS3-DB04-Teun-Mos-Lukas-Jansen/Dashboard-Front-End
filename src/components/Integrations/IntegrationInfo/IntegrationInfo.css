@@ -76,6 +76,11 @@
 
 }
 
+.integration-info-inactive-container {
+    color: #ffffffa0;
+    text-decoration: underline;
+}
+
 .integration-info-bottom-container {
     display: flex;
     justify-content: space-between;
