@@ -1,0 +1,186 @@
+.integration-info {
+    background-color: var(--card-color);
+    border-radius: var(--roundness);
+    padding: 8px;
+    margin: 10px;
+    box-shadow: var(--epic-shadow);
+    display: flex;
+    /* min-width: var(--integration-info-component-width); */
+    /* overflow: hidden; */
+}
+
+.integration-info-img-container img {
+    background-color: var(--card-color-2);
+    height: 100px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: var(--roundness);
+}
+
+.integration-info-img-container {
+    aspect-ratio: 1/1;
+    width: fit-content;
+    height: fit-content;
+}
+.integration-info-content {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+}
+
+.integration-info-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.integration-info-tag-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    margin-top: 5px;
+    gap: 5px;
+    overflow-x: auto;
+    width: inherit;
+}
+
+.integration-info-tag {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding: 2px;
+    padding-inline: 8px;
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--card-color-2);
+    border-radius: 100px;
+}
+
+
+.integration-info-content ::-webkit-scrollbar {
+    height: 10px;
+    background-color: transparent;
+}
+
+.integration-info-content ::-webkit-scrollbar-thumb {
+    border: 1px solid var(--card-color);
+    background-color: var(--card-color-2);
+
+}
+
+
+.integration-info-noconfig-container {
+    color: var(--error-color);
+    text-decoration: underline;
+
+}
+
+.integration-info-inactive-container {
+    color: #ffffffa0;
+    text-decoration: underline;
+}
+
+.integration-info-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 3px;
+}
+
+.integration-info-cardcount-container {
+    text-decoration: underline;
+    font-size: .9em;
+}
+
+
+.integration-info-container {
+    width: 100%;
+    height: 100%;
+}
+
+.integration-info-view-more-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.integration-info-view-more {
+    position: absolute;
+    margin: 10px;
+    background-color: transparent;
+    padding: 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.integration-info-view-more:hover {
+    background-color: #ffffff2a;
+}
+
+.integration-info-view-more:active {
+    background-color: #ffffff5a;
+}
+
+.integration-info-view-more img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+
+.integration-info-view-more-popup {
+    background-color: var(--card-color-2);
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    border-radius: var(--roundness);
+    overflow: hidden;
+    font-weight: 500;
+    box-shadow: var(--normal-shadow);
+}
+
+.integration-info-view-more-popup-item {
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.integration-info-view-more-popup-item img {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+}
+
+.integration-info-view-more-popup-item:hover {
+    background-color: #ffffff2a;
+}
+
+.integration-info-view-more-popup-item:active {
+    background-color: #ffffff5a;
+}
+
+.integration-info-view-more-popup-item-delete {
+    color: var(--delete-color);
+}
+
+
+.integration-info-view-more-popup-item-delete div {
+    -webkit-mask-image: url("../../../images/delete.svg");
+    mask-image: url("../../../images/delete.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    height: 20px;
+    cursor: pointer;
+    width: 20px;
+}
+
+.integration-info-view-more-popup-item-delete div div {
+    width: 100%;
+    height: 100%;
+    background-color: var(--delete-color);
+}

@@ -6,7 +6,7 @@ import { SideBarContext } from "./SideBarContextProvider";
 import SettingsImg from "../../images/settings.svg";
 import ThemeImg from "../../images/theme.svg";
 import HomeImg from "../../images/home.svg";
-import IntergrationsImg from "../../images/intergrations.svg";
+import IntergrationsImg from "../../images/integrations.svg";
 
 export default function SideBar() {
   const SideBarShown = useContext(SideBarContext).SideBarShown;
