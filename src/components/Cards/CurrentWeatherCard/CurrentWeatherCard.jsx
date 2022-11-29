@@ -160,12 +160,12 @@ export default function CurrentWeatherCard(id, column, isDummy) {
         case "09d":
           // Shower rain
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://www.sciline.org/wp-content/uploads/2021/02/cropped-Torrential-Rain-Flooding-and-Climate-Change.jpg";
           break;
         case "09n":
           // Shower rain night
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://i.ytimg.com/vi/7JyE47-Ykjo/maxresdefault.jpg";
           break;
         case "10d":
           // Rain
@@ -174,34 +174,28 @@ export default function CurrentWeatherCard(id, column, isDummy) {
         case "10n":
           // Rain night
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://i.ytimg.com/vi/7JyE47-Ykjo/maxresdefault.jpg";
           break;
         case "11d":
-          // Thunderstorm
-          imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
-          break;
         case "11n":
+          // Thunderstorm
           // Thunderstorm night
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://thumbs.gfycat.com/ClearWelllitEmu-max-1mb.gif";
           break;
         case "13d":
           // Snow
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://images.unsplash.com/photo-1589218112660-81ef972e89e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25vd3klMjBkYXl8ZW58MHx8MHx8&w=1000&q=80";
           break;
         case "13n":
           // Snow night
           imgurl =
-            "https://media.tenor.com/VRpD_dHvbt0AAAAM/duck-rainy-day.gif";
+            "https://www.icegif.com/wp-content/uploads/snow-icegif-29.gif";
           break;
         case "50d":
-          // Mist
-          imgurl =
-            "https://www.anwb.nl/binaries/content/gallery/anwb/nieuws/verkeer/redesign-standaard-beelden/weer-en-waarschuwing/mist-onderweg-verkeer-1520-x-855.jpg/mist-onderweg-verkeer-1520-x-855.jpg/anwb%3Aw760";
-          break;
         case "50n":
+          // Mist
           // Mist night
           imgurl =
             "https://www.anwb.nl/binaries/content/gallery/anwb/nieuws/verkeer/redesign-standaard-beelden/weer-en-waarschuwing/mist-onderweg-verkeer-1520-x-855.jpg/mist-onderweg-verkeer-1520-x-855.jpg/anwb%3Aw760";

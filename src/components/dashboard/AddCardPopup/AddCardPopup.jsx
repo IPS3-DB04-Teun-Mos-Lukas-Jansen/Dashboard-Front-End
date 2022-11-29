@@ -20,10 +20,12 @@ export default function AddCardPopup(props) {
   }
 
   async function AddIntegrationCardToLayout(cardType) {
-    const cardId = Math.random().toString(36).substring(10, 30);
+    const cardId = crypto.randomUUID();
     await AddCardToLayout(props.SelectedColumn,cardId, cardType);
     ClosePopup();
   }
+
+  
 
   useEffect(() => {
     setInactiveCount(0);
