@@ -31,15 +31,14 @@ export default function IntegrationInfo(props) {
   function checkConfig() {
     if (props.integration.credentials != null) {
       const credentials = Object.values(props.integration.credentials).slice(1);
-
-      credentials.forEach((credential) => {
-        if (credential === "" || credential === null) {
+      for (let i = 0; i < credentials.length; i++) {
+        if (credentials[i] === "" || credentials[i] === null) {
           setValidConfig(false);
           return;
         }
-      });
-      setValidConfig(true);
+      }
     }
+    setValidConfig(true);
   }
 
   function configureIntegration() {
@@ -107,7 +106,9 @@ export default function IntegrationInfo(props) {
             </div>
             <Popup
               trigger={
-                <div className="integration-info-view-more-popup-item integration-info-view-more-popup-item-delete">
+                <div
+                  className="integration-info-view-more-popup-item integration-info-view-more-popup-item-delete"
+                >
                   <div>
                     <div />
                   </div>
@@ -119,15 +120,16 @@ export default function IntegrationInfo(props) {
               {(close) => (
                 <div className="integration-info-view-more-popup-delete">
                   <div>
-                    <h2 className="integration-info-view-more-popup-delete-header">
-                      Warning!
-                    </h2>
-                    Are you sure you want to remove this integration? This will
-                    remove all cards associated with this integration.
+                    <h2 className="integration-info-view-more-popup-delete-header" >Warning!</h2>
+                    Are you sure you want to remove this integration? This will remove all cards associated with this integration.
                   </div>
                   <div className="integration-info-view-more-popup-delete-buttons">
-                    <button onClick={deleteIntegration}>Remove</button>
-                    <button onClick={close}>Cancel</button>
+                    <button onClick={deleteIntegration}>
+                      Remove
+                    </button>
+                    <button onClick={close}>
+                      Cancel
+                    </button>
                   </div>
                 </div>
               )}
