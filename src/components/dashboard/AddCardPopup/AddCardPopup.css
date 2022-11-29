@@ -28,7 +28,7 @@
   }
 
 .available-card-list-container {
-    height: 90%;
+    height: 85%;
     overflow: auto;
 }
 
@@ -63,7 +63,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10%;
 }
 .cancel-button {
     border: none;
@@ -82,4 +81,13 @@
 
 .cancel-button:focus {
     box-shadow: var(--epic-shadow-inverted);
+}
+
+.add-card-popup-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    flex-direction: column;
+    gap: 10px;
 }

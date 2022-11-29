@@ -13,6 +13,8 @@ function GetColumnAmount() {
 function GetColumnlist(props) {
   const [Columns, setColumns] = useState(GetColumnAmount);
 
+
+  // This is a function that will be called when the window is resized
   function handleResize() {
     setColumns(GetColumnAmount);
   }
@@ -59,9 +61,10 @@ function DashBoard() {
     }
   }, [User]);
 
-  async function init() {
-    SetLayout(await GetLayout());
-    SetActiveIntegrations( await GetIntegrationCredentials());
+  async function init(destructive = false) {
+    if (destructive) { SetLayout(); }
+    GetLayout().then((layout) => {SetLayout(layout)});
+    GetIntegrationCredentials().then((integrations) => {SetActiveIntegrations(integrations)});
   }
 
   async function ShowAddCardPopup(columnNumer) {

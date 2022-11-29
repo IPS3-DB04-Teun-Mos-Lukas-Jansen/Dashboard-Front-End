@@ -39,3 +39,12 @@ export async function RemoveColumnFromLayout(columnNumber) {
         },
       });
 }
+
+export async function RemoveCardsOfType(type) {
+    const token = await GetTokenObject();
+    return await axios.delete(API_URL + "card/type/" + token.id_token, {
+        params: {
+            type: type
+        },
+      });
+}

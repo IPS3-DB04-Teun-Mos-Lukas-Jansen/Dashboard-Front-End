@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import CardContainer from "../../CardContainer/CardContainer";
 import "./AddCardPopup.css";
 
@@ -6,6 +6,7 @@ import {AddUrlCard} from "../../../services/UserPreferences_Services/UrlCardServ
 import {AddCardToLayout} from "../../../services/UserPreferences_Services/LayoutServices"
 
 export default function AddCardPopup(props) {
+  const [inactiveCount, setInactiveCount] = useState(0);
     
   function ClosePopup() {
     props.ClosePopup();
@@ -23,6 +24,16 @@ export default function AddCardPopup(props) {
     await AddCardToLayout(props.SelectedColumn,cardId, cardType);
     ClosePopup();
   }
+
+  useEffect(() => {
+    setInactiveCount(0);
+    props.ActiveIntegrations.map((integration) => {
+      console.log(integration);
+      if (!integration.credentials.Active) {
+        setInactiveCount(inactiveCount + 1);
+      }
+    });
+  }, [props.ActiveIntegrations]);
 
   return (
     <div className="add-card-popup-container">
@@ -53,18 +64,29 @@ export default function AddCardPopup(props) {
 
                     <div>{integration.name}</div>
                   </div>
-                );
-              }
+                  );
+                }
               })
             }
 
           </div>
         </div>
-
+        
+        <div className="add-card-popup-footer">
+          {
+            inactiveCount > 0 && (
+              <div className="inactive-integrations">
+                <div className="inactive-integrations-text">
+                  Not showing {inactiveCount} card{inactiveCount > 1 &&  "s" } because of {inactiveCount} inactive integration{inactiveCount > 1 &&  "s" } 
+                </div>
+              </div>
+            )
+          }
         <div className="cancel-button-container">
           <button className="cancel-button" onClick={ClosePopup}>
             Cancel
           </button>
+        </div>
         </div>
       </div>
     </div>

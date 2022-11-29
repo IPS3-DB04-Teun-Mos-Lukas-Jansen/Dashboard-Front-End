@@ -9,6 +9,28 @@
     /* overflow: hidden; */
 }
 
+.integration-info-view-more-popup-delete {
+    background-color: var(--card-color);
+    border-radius: var(--roundness);
+    padding: 8px;
+    margin: 10px;
+    box-shadow: var(--epic-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+}
+
+.integration-info-view-more-popup-delete-header {
+    margin: 5px;
+    margin-bottom: 20px;
+}
+
+.integration-info-view-more-popup-delete-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .integration-info-img-container img {
     background-color: var(--card-color-2);
     height: 100px;
