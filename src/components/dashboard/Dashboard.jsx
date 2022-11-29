@@ -4,6 +4,7 @@ import Column from "../dashboard/column/Column";
 import { UserContext, ApplicationContext } from "../../app";
 import { GetLayout } from "../../services/UserPreferences_Services/LayoutServices";
 import AddCardPopup from "./AddCardPopup/AddCardPopup";
+import { GetIntegrationCredentials } from "../../services/Integration_Services/IntegrationService";
 
 function GetColumnAmount() {
   return Math.min(Math.round((window.innerWidth - 64) / 340), 5);
@@ -12,6 +13,8 @@ function GetColumnAmount() {
 function GetColumnlist(props) {
   const [Columns, setColumns] = useState(GetColumnAmount);
 
+
+  // This is a function that will be called when the window is resized
   function handleResize() {
     setColumns(GetColumnAmount);
   }
@@ -50,14 +53,18 @@ function DashBoard() {
   const [IsAddCardPopupShown, SetAddCardPopupShown] = useState(false);
   const [SelectedColumn, SetSelectedColumn] = useState(0);
 
+  const [ActiveIntegrations, SetActiveIntegrations] = useState([]);
+
   useEffect(() => {
     if (User != null) {
       init();
     }
   }, [User]);
 
-  async function init() {
-    SetLayout(await GetLayout());
+  async function init(destructive = false) {
+    if (destructive) { SetLayout(); }
+    GetLayout().then((layout) => {SetLayout(layout)});
+    GetIntegrationCredentials().then((integrations) => {SetActiveIntegrations(integrations)});
   }
 
   async function ShowAddCardPopup(columnNumer) {
@@ -85,6 +92,7 @@ function DashBoard() {
           <AddCardPopup
             ClosePopup={ClosePopup}
             SelectedColumn={SelectedColumn}
+            ActiveIntegrations={ActiveIntegrations}
           ></AddCardPopup>
         )}
       </InitContext.Provider>

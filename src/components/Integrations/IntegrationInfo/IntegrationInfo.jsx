@@ -1,6 +1,6 @@
 import "./IntegrationInfo.css";
 import Switch from "react-switch";
-import { useState, useContext,useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import Popup from "reactjs-popup";
 
 import ConfigureImg from "../../../images/settings.svg";
@@ -8,19 +8,37 @@ import MoreImg from "../../../images/more.svg";
 import IntegrationConfigurationPopup from "../IntegrationConfigurationPopup/IntegrationConfigurationPopup";
 import { integrationsContext } from "../../../pages/Integrations/IntegrationsPage";
 import { DeleteIntegrationCredentials } from "../../../services/Integration_Services/IntegrationService";
-import setConfig  from "../setConfig";
+import { RemoveCardsOfType } from "../../../services/UserPreferences_Services/LayoutServices";
+import setConfig from "../setConfig";
 
 export default function IntegrationInfo(props) {
   const [currentIntegrationInfo, setCurrentIntegrationInfo] = useState();
-  const [isEnabled, setIsEnabled] = useState(props.integration.credentials.Active);
+  const [isEnabled, setIsEnabled] = useState(
+    props.integration.credentials.Active
+  );
   const [configOpen, setConfigOpen] = useState(false);
   const reloadIntegrations = useContext(integrationsContext).init;
+  const [validConfig, setValidConfig] = useState(true);
 
   async function ToggleIntegration(state) {
-    await setConfig(currentIntegrationInfo, [state , props.integration.credentials.City]);
+    const config = Object.values(props.integration.credentials).slice(1);
+    await setConfig(currentIntegrationInfo, [state, ...config]);
     setIsEnabled(state);
     setIntegrationActiveColor(state);
     await reloadIntegrations();
+  }
+
+  function checkConfig() {
+    if (props.integration.credentials != null) {
+      const credentials = Object.values(props.integration.credentials).slice(1);
+      for (let i = 0; i < credentials.length; i++) {
+        if (credentials[i] === "" || credentials[i] === null) {
+          setValidConfig(false);
+          return;
+        }
+      }
+    }
+    setValidConfig(true);
   }
 
   function configureIntegration() {
@@ -28,17 +46,20 @@ export default function IntegrationInfo(props) {
   }
 
   function setIntegrationActiveColor(state) {
-
-    document.getElementById(props.integration.name).style.transitionDuration = "0.5s";
+    document.getElementById(props.integration.name).style.transitionDuration =
+      "0.5s";
     if (state) {
-      document.getElementById(props.integration.name).style.filter = "saturate(100%) brightness(100%)";
+      document.getElementById(props.integration.name).style.filter =
+        "saturate(100%) brightness(100%)";
     } else {
-    document.getElementById(props.integration.name).style.filter = "saturate(0) brightness(90%)";
+      document.getElementById(props.integration.name).style.filter =
+        "saturate(0) brightness(90%)";
     }
   }
 
   async function deleteIntegration() {
     await DeleteIntegrationCredentials(props.integration.name);
+    await RemoveCardsOfType(props.integration.name);
     await reloadIntegrations();
   }
 
@@ -52,13 +73,18 @@ export default function IntegrationInfo(props) {
     });
   }, [props.allIntegrations]);
 
+  useEffect(() => {
+    checkConfig();
+  }, [currentIntegrationInfo]);
+
   return (
-    <div id={props.integration.name}  className="integration-info-container">
-      <IntegrationConfigurationPopup 
+    <div id={props.integration.name} className="integration-info-container">
+      <IntegrationConfigurationPopup
         isOpen={configOpen}
         setOpen={setConfigOpen}
         integration={currentIntegrationInfo}
-        defaultValues={props.integration.credentials}></IntegrationConfigurationPopup>
+        defaultValues={props.integration.credentials}
+      ></IntegrationConfigurationPopup>
       <div className="integration-info-view-more-container">
         <Popup
           trigger={
@@ -68,18 +94,46 @@ export default function IntegrationInfo(props) {
           }
           arrow={false}
           position="bottom center"
+          nested
         >
           <div className="integration-info-view-more-popup">
-            <div onClick={configureIntegration} className="integration-info-view-more-popup-item">
+            <div
+              onClick={configureIntegration}
+              className="integration-info-view-more-popup-item"
+            >
               <img src={ConfigureImg} />
               Configure
             </div>
-            <div onClick={deleteIntegration} className="integration-info-view-more-popup-item integration-info-view-more-popup-item-delete">
-              <div>
-                <div />
-              </div>
-              Remove
-            </div>
+            <Popup
+              trigger={
+                <div
+                  className="integration-info-view-more-popup-item integration-info-view-more-popup-item-delete"
+                >
+                  <div>
+                    <div />
+                  </div>
+                  Remove
+                </div>
+              }
+              modal
+            >
+              {(close) => (
+                <div className="integration-info-view-more-popup-delete">
+                  <div>
+                    <h2 className="integration-info-view-more-popup-delete-header" >Warning!</h2>
+                    Are you sure you want to remove this integration? This will remove all cards associated with this integration.
+                  </div>
+                  <div className="integration-info-view-more-popup-delete-buttons">
+                    <button onClick={deleteIntegration}>
+                      Remove
+                    </button>
+                    <button onClick={close}>
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </Popup>
           </div>
         </Popup>
       </div>
@@ -90,31 +144,37 @@ export default function IntegrationInfo(props) {
             <img src={currentIntegrationInfo.imgUrl}></img>
           </div>
           <div className="integration-info-content">
-            <div className="integration-info-title">{currentIntegrationInfo.name}</div>
+            <div className="integration-info-title">
+              {currentIntegrationInfo.name}
+            </div>
             <div className="integration-info-tag-container">
               {currentIntegrationInfo.tags.map((tag) => {
-              return <div key={tag} className="integration-info-tag">{tag}</div>
+                return (
+                  <div key={tag} className="integration-info-tag">
+                    {tag}
+                  </div>
+                );
               })}
             </div>
 
-            {!props.integration.credentials && (
+            {!validConfig && props.integration.credentials.Active && (
               <div className="integration-info-noconfig-container">
                 NO CONFIG!
               </div>
             )}
-           {
-              !props.integration.credentials.Active && ( 
-                <div className="integration-info-inactive-container">
-                  Inegration Disabled
-                </div>
-                )
-           }
+
+            {!props.integration.credentials.Active && (
+              <div className="integration-info-inactive-container">
+                Integration Disabled
+              </div>
+            )}
 
             <div className="spacer"></div>
 
             <div className="integration-info-bottom-container">
               <div className="integration-info-cardcount-container">
-                Enables {currentIntegrationInfo.cardCount} card{currentIntegrationInfo.cardCount > 1 && "s"}
+                Enables {currentIntegrationInfo.cardCount} card
+                {currentIntegrationInfo.cardCount > 1 && "s"}
               </div>
               <div className="integration-info-bottom-right">
                 <Switch

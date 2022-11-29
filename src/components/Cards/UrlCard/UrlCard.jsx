@@ -47,7 +47,6 @@ function UrlComponent(props) {
   }
 
   function startEdit() {
-    console.log("start edit");
     SetEditUrltext(url);
   }
 
@@ -129,7 +128,7 @@ export default function UrlCard(id, column, isDummy) {
 
   useEffect(() => {
     Init();
-  }, [EditMode, ReloadCards]);
+  }, [EditMode]);
 
   async function Init() {
     if (isDummy != null && isDummy) {
@@ -162,6 +161,7 @@ export default function UrlCard(id, column, isDummy) {
 
       await AddUrlToCard(id, url);
       await ReloadCards();
+      await Init();
       SetAddUrltext("");
     }
   }
@@ -169,7 +169,7 @@ export default function UrlCard(id, column, isDummy) {
   async function DeleteUrlCard() {
     await RemoveUrlCard(id);
     await RemoveCardFromLayout(column, id);
-    await ReloadCards();
+    await ReloadCards(true);
   }
 
   return (

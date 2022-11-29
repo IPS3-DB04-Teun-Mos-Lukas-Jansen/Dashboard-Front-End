@@ -1,6 +1,7 @@
 import React from "react";
 import "./CardContainer.css";
 import UrlCard from "../Cards/UrlCard/UrlCard";
+import CurrentWeatherCard from "../Cards/CurrentWeatherCard/CurrentWeatherCard";
 
 export default function CardContainer(props) {
 
@@ -14,6 +15,10 @@ export default function CardContainer(props) {
                     return UrlCard(card.cardId, column);
                 case "Url-dummy":
                     return UrlCard("dummy",0,true);
+                case "openWeatherMap":
+                    return CurrentWeatherCard(card.cardId, column);
+                case "openWeatherMap-dummy":
+                    return CurrentWeatherCard("dummy",0,true);
             }
         }
     }
