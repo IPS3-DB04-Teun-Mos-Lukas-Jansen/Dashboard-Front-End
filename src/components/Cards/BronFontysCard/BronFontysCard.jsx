@@ -38,7 +38,6 @@ export default function BronFontysCard(id, column, cardData, isDummy = false) {
     if (!isDummy) {
       GetBronFontysData().then((data) => {
         setArticles(data);
-        console.log(data);
       });
     } else {
       setArticles([

@@ -15,7 +15,6 @@ export default function AddIntegrationPopup(props) {
     setCurrentConfig(integration);
     setConfigOpen(true);
     props.setOpen(false);
-    console.log(props.integrations);
   }
 
   return (

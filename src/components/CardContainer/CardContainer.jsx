@@ -8,8 +8,6 @@ export default function CardContainer(props) {
 
     const card = props.card;
     const column = props.Column;
-
-    console.log(card);
     
     function getCard() {
         if (card != null) {

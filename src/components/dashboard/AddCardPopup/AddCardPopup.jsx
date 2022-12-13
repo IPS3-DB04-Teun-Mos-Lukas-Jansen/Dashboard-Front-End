@@ -37,7 +37,6 @@ export default function AddCardPopup(props) {
   useEffect(() => {
     setInactiveCount(0);
     props.ActiveIntegrations.map((integration) => {
-      console.log(integration);
       if (!integration.credentials.Active) {
         setInactiveCount(inactiveCount + 1);
       }
@@ -63,7 +62,6 @@ export default function AddCardPopup(props) {
             {/* Get all integrations */}
             {
               props.ActiveIntegrations.map((integration) => {
-                console.log(integration);
                 if (integration.credentials.Active) { 
                 return (
                   <div className="card-list-item" key={integration.name} onClick={()=> {AddIntegrationCardToLayout(integration.name)}}>
