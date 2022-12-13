@@ -1,0 +1,56 @@
+.bron-fontys-article-image img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.bron-fontys-article-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 2/1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.bron-fontys-article-image:hover {
+    filter: brightness(110%);
+}
+
+.bron-fontys-article {
+    display: flex;
+    flex-direction: column;
+}
+
+.bron-fontys-article-title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
+.bron-fontys-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bron-fontys-article-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    margin-inline: 10px;
+    padding: 0;
+}
+
+
+.bron-fontys-article-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: smaller;
+    margin-inline: 10px;
+    margin-bottom: 10px;
+}

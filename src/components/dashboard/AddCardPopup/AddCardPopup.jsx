@@ -21,7 +21,14 @@ export default function AddCardPopup(props) {
 
   async function AddIntegrationCardToLayout(cardType) {
     const cardId = crypto.randomUUID();
-    await AddCardToLayout(props.SelectedColumn,cardId, cardType);
+
+    if (cardType === "bronFontys") {
+      await AddCardToLayout(props.SelectedColumn,cardId, cardType, {articleCount: 3}); //inital article count is 3
+    }
+    else {
+      await AddCardToLayout(props.SelectedColumn,cardId, cardType);
+    }
+
     ClosePopup();
   }
 
