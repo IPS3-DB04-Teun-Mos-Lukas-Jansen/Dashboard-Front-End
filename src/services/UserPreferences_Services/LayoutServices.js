@@ -10,9 +10,9 @@ export async function GetLayout() {
       });
 }
 
-export async function AddCardToLayout(columnNumber, cardId, type) {
+export async function AddCardToLayout(columnNumber, cardId, type, body = null) {
     const token = await GetTokenObject();
-    return await axios.post(API_URL + "card/" + token.id_token, null, {
+    return await axios.post(API_URL + "card/" + token.id_token, body, {
         params: {
             column_number : columnNumber,
             card_id : cardId,
@@ -36,6 +36,16 @@ export async function RemoveColumnFromLayout(columnNumber) {
     return await axios.delete(API_URL + "column/" + token.id_token, {
         params: {
             column_number: columnNumber
+        },
+      });
+}
+
+export async function UpdateCardParams(columnNumber, cardId, body) {
+    const token = await GetTokenObject();
+    return await axios.put(API_URL + "card/" + token.id_token, body, {
+        params: {
+            column_number: columnNumber,
+            card_id : cardId
         },
       });
 }

@@ -23,6 +23,5 @@ export async function DeleteIntegrationCredentials(integration) {
 }
 
 
-
 //copilot moment
 //dovuči podatke iz baze o svim integracijama koje su dostupne za korisnika (integracije koje je korisnik dodao) i njihove podatke (npr. naziv, opis, ikona, ...) 

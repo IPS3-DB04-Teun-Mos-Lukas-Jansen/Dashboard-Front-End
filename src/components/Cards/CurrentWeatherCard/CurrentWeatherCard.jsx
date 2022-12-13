@@ -63,7 +63,6 @@ export default function CurrentWeatherCard(id, column, isDummy) {
   async function UpdateWeatherData() {
     try {
       const data = await GetCurrentWeatherForecast();
-      console.log(data);
       SetWeatherData(data);
       setWindDirection(DegreesToWindDirection(data.windDirection));
       if (!isEnabled) {
@@ -73,7 +72,6 @@ export default function CurrentWeatherCard(id, column, isDummy) {
     } catch (e) {
       switch (e.response.status) {
         case 406:
-          console.log("406");
           CreateDummyData();
           document.getElementById(id).style.filter =
             "blur(2px) grayscale(100%) brightness(40%)";
@@ -81,7 +79,6 @@ export default function CurrentWeatherCard(id, column, isDummy) {
           setIsEnabled(false);
           break;
         case 404:
-          console.log("404");
           CreateDummyData();
           document.getElementById(id).style.filter =
             "blur(2px) grayscale(100%) brightness(40%)";
@@ -89,7 +86,6 @@ export default function CurrentWeatherCard(id, column, isDummy) {
             setIsEnabled(false);
           break;
         case 400:
-            console.log("400");
             CreateDummyData();
             document.getElementById(id).style.filter =
                 "blur(2px) grayscale(100%) brightness(40%)";
@@ -97,7 +93,6 @@ export default function CurrentWeatherCard(id, column, isDummy) {
                 setIsEnabled(false);
             break;
         default:
-          console.log("default");
           break;
       }
     }

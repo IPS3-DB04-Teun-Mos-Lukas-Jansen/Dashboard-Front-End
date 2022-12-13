@@ -206,3 +206,25 @@
     height: 100%;
     background-color: var(--delete-color);
 }
+
+.integration-info-view-more-popup-item-configure {
+    color: var(--text-color);
+}
+
+
+.integration-info-view-more-popup-item-configure div {
+    -webkit-mask-image: url("../../../images/settings.svg");
+    mask-image: url("../../../images/settings.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    height: 20px;
+    cursor: pointer;
+    width: 20px;
+    -webkit-mask-size: contain;
+}
+
+.integration-info-view-more-popup-item-configure div div {
+    width: 100%;
+    height: 100%;
+    background-color: var(--text-color);
+}
