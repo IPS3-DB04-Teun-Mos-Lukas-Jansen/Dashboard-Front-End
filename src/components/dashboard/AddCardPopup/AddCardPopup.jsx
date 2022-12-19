@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CardContainer from "../../CardContainer/CardContainer";
 import "./AddCardPopup.css";
+import uuid from "react-uuid";
 
 import {AddUrlCard} from "../../../services/UserPreferences_Services/UrlCardServices"
 import {AddCardToLayout} from "../../../services/UserPreferences_Services/LayoutServices"
@@ -20,7 +21,7 @@ export default function AddCardPopup(props) {
   }
 
   async function AddIntegrationCardToLayout(cardType) {
-    const cardId = crypto.randomUUID();
+    const cardId = uuid();
 
     if (cardType === "bronFontys") {
       await AddCardToLayout(props.SelectedColumn,cardId, cardType, {articleCount: 3}); //inital article count is 3
