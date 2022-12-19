@@ -35,15 +35,15 @@ function UrlComponent(props) {
   async function EditUrl(close) {
     if (EditUrltext != "") {
       await UpdateUrlInCard(cardId, urlId, EditUrltext);
+      await ReloadCards(true);
       close();  
-      ReloadCards();
     }
   }
 
   async function DeleteUrl(close) {
     await RemoveUrlFromCard(cardId, urlId);
+    await ReloadCards(true);
     close();
-    ReloadCards();
   }
 
   function startEdit() {
