@@ -11,7 +11,7 @@ import IntegrationsPage from "./pages/Integrations/IntegrationsPage.jsx";
 
 export const UserContext = React.createContext(null);
 export const ApplicationContext = React.createContext(null);
-
+//
 export default function App() {
   const [User, SetUser] = useState(null);
   const [EditMode, SetEditMode] = useState(false);
